@@ -6,11 +6,15 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 
+
+
+
+
 @Named("noteController")
 @SessionScoped
 public class NoteController implements Serializable {
 	private static final long serialVersionUID = 7199060576374141490L;
-	String text = "predefined text";
+	String text = "";
 
 	public String getText() {
 		System.out.println("get text");
@@ -22,8 +26,5 @@ public class NoteController implements Serializable {
 		this.text = text;
 	}
 	
-	public void textChanged(ValueChangeEvent event) {
-		System.out.println("text changed");
-		this.text = (String)event.getNewValue();
-	}
+
 }
