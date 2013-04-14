@@ -6,23 +6,16 @@ xmlns:p="http://primefaces.org/ui"
 xmlns:cc="http://java.sun.com/jsf/composite/note"
 >
 
-
 	<h:head>
-	
+		<link href='http://fonts.googleapis.com/css?family=Snippet' rel='stylesheet' type='text/css'/>
 	</h:head>
 	
 	<h:body>
 			<div style="width:600px">
-					<!-- 
-					<h:form>
-						<h:inputTextarea styleClass="ccnote" value="#{noteController.text}" style="width:100%;height:100%;"  >
-							<f:ajax event="keyup" execute="@this" />
-						</h:inputTextarea>
-					</h:form>
-					-->
+			
 					
 				<h:form>
-					<cc:note text="#{noteController.text}" width="50" height="10"/>
+					<cc:note text="#{noteController.text}" />
 				</h:form>
 					
 			</div>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:composite="http://java.sun.com/jsf/composite">
+
+
+	
+	<composite:interface>
+		<composite:editableValueHolder  name="text" targets="inputarea"></composite:editableValueHolder>
+		<composite:attribute name="interval" default="5" />
+		<composite:attribute name="savingNotificationText" default="saving..." />
+		<composite:attribute name="savedNotificationText" default="changes saved" />
+	</composite:interface>
+	
+	
+	<composite:implementation>
+			<h:outputStylesheet library="css" name="ccnote.css"  />
+			<script type="text/javascript">
+				function saving() {
+					var el = jQuery("#statustext");
+					el.text("${cc.attrs.savingNotificationText}");
+					el.show();
+				}
+				
+				function removeSaved() {
+					var el = jQuery("#statustext");
+					if(el.text() == "${cc.attrs.savedNotificationText}")
+						el.fadeOut();
+				}
+				
+				function saved() {
+					var el = jQuery("#statustext");
+					
+					if(el.text() == "${cc.attrs.savingNotificationText}") {
+						el.text("${cc.attrs.savedNotificationText}");
+						el.show();
+						window.setTimeout("removeSaved()", 1000);
+					}
+				}
+			</script>
+			<div class="ccpanel">
+				<p:panel header="Note" showDetails="true" >
+					<span id="statustext" ></span>
+					<h:inputTextarea onkeydown="saving()"  id="inputarea" styleClass="ccnote"  value="#{cc.attrs.text}" style="width:100%;height:100%;"  >
+						<f:ajax execute="@this" />
+					</h:inputTextarea>
+				</p:panel>
+			</div>
+			<p:poll onsuccess="saved()" interval="${cc.attrs.interval}" process="inputarea" autoStart="true"/>
+	</composite:implementation>
+</html>

@@ -3,7 +3,6 @@ package de.morten.web;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 
 
@@ -26,5 +25,6 @@ public class NoteController implements Serializable {
 		this.text = text;
 	}
 	
+
 
 }

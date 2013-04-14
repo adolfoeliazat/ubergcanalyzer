@@ -1,0 +1,23 @@
+
+
+
+.ccnote {
+	background-image:url("#{resource['images:squared.jpg']}");
+	font-family: 'Snippet', sans-serif;
+}
+
+
+
+.ccpanel .ui-panel-content {
+	position:relative;
+	padding:0;
+	height:300px;
+}
+
+.ccpanel #statustext {
+	position:absolute;
+	right:0px;
+	font-size:9pt;
+	top:-25;
+	width:100px;	
+}
