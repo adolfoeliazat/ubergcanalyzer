@@ -1,9 +1,11 @@
 
 
 
-.ccnote {
+.ui-widget .ccnote {
 	background-image:url("#{resource['images:squared.jpg']}");
-	font-family: 'Snippet', sans-serif;
+	font-family: 'Noto Serif', serif;
+	padding:5px;
+	font-size:14pt;
 }
 
 
@@ -16,8 +18,12 @@
 
 .ccpanel #statustext {
 	position:absolute;
-	right:0px;
+	right:54px;
 	font-size:9pt;
-	top:-25;
+	top:-27;
 	width:100px;	
+}
+
+.ui-menu {
+	font-size: 9pt;
 }
