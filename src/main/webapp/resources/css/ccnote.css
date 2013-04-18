@@ -27,3 +27,11 @@
 .ui-menu {
 	font-size: 9pt;
 }
+
+.ui-selectonelistbox.morton-selectonelistbox {
+	background:transparent;
+	box-shadow:none;
+	border:0px;
+	color:inherit;
+	width:100%;	
+}

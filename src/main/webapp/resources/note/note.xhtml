@@ -12,6 +12,8 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 	
 	<composite:interface>
 		<composite:editableValueHolder  name="text" targets="inputarea"></composite:editableValueHolder>
+		<composite:editableValueHolder  name="fontSize" targets="fontSize"></composite:editableValueHolder>
+		<composite:editableValueHolder  name="fontFamily" targets="fontFamily"></composite:editableValueHolder>
 		<composite:attribute name="interval" default="3000	" />
 		<composite:attribute name="savingNotificationText" default="saving..." />
 		<composite:attribute name="savedNotificationText" default="changes saved" />
@@ -26,6 +28,7 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 			<link href='http://fonts.googleapis.com/css?family=Happy+Monkey' rel='stylesheet' type='text/css' />
 			<link href='http://fonts.googleapis.com/css?family=Clicker+Script' rel='stylesheet' type='text/css' />
 			<link href='http://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css' />
+			<link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css' />
 			
 			<script type="text/javascript">
 
@@ -53,42 +56,53 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 						var el = jQuery("#statustext");
 						el.text("${cc.attrs.savedNotificationText}");
 						el.show().delay(1000).fadeOut();
-					},
-					
-					chooseFont : function(name) {
-						jQuery(".ccnote").css("font-family", "'"+name+"', cursive");
-					},
-					
-					chooseFontSize : function(size) {
-						jQuery(".ccnote").css("font-size",  size);
 					}
-				
 				}
+				
+				
 				
 			</script>
 			<div id="ccpanel" class="ccpanel" >
+			
 				<p:panel header="Note" showDetails="true" >
 					<span id="statustext" ></span>
-					<h:inputTextarea  onkeydown="de.morton.saveNoteText(this, event)"  id="inputarea" styleClass="ccnote"  value="#{cc.attrs.text}" style="width:100%;height:100%;"  />
+					<h:inputTextarea  onkeydown="de.morton.saveNoteText(this, event)"  id="inputarea" styleClass="ccnote"  value="#{cc.attrs.text}" 
+					style="border:none; resize:none;width:100%;height:100%;font-size:#{cc.attrs.fontSize}pt;
+					font-family:#{cc.attrs.fontFamily}, cursive"  />
 					
-					 	<f:facet name="options">
-				            <p:menu>
-				                <p:submenu label="Fonts">
-				                    <p:menuitem value="Fondamento" onclick="de.morton.chooseFont('Fondamento')"/>
-				                     <p:menuitem value="Happy Monkey" onclick="de.morton.chooseFont('Happy Monkey')"/>
-				                     <p:menuitem value="Clicker Script" onclick="de.morton.chooseFont('Clicker Script')"/>
-				                     <p:menuitem value="Noto Serif" onclick="de.morton.chooseFont('Noto Serif')"/>
-				                </p:submenu>
-				                <p:submenu label="Font size">
-				                    <p:menuitem value="10" onclick="de.morton.chooseFontSize('10pt')"/>
-				                    <p:menuitem value="14" onclick="de.morton.chooseFontSize('14pt')"/>
-				                    <p:menuitem value="18" onclick="de.morton.chooseFontSize('18pt')"/>
-				                    <p:menuitem value="22" onclick="de.morton.chooseFontSize('22pt')"/>
-				                </p:submenu>
-				            </p:menu>
-				        </f:facet>
+					
+				 	<f:facet name="options">
+			            <p:menu>
+			                <p:submenu  label="Fonts">
+			                <p:menuitem>
+			                    <p:selectOneListbox styleClass="morton-selectonelistbox"  id="fontFamily"  value="#{cc.attrs.fontFamily}">
+						            <f:selectItem styleClass="ui-widget" itemLabel="Noto Serif" itemValue="Noto Serif" />
+						            <f:selectItem itemLabel="Fondamento" itemValue="Fondamento" />
+						            <f:selectItem itemLabel="Happy Monkey" itemValue="Happy Monkey" />
+						            <f:selectItem itemLabel="Clicker Script" itemValue="Clicker Script" />
+						            <f:selectItem itemLabel="Satisfy" itemValue="Satisfy" />
+						            <p:ajax partialSubmit="true" execute="@this" update="inputarea"/>
+						        </p:selectOneListbox>
+			                </p:menuitem>
+			              
+			                </p:submenu>
+			                <p:submenu label="Font size">
+			                	 <p:menuitem ajax="false">
+				                	 <p:selectOneListbox styleClass="morton-selectonelistbox" id="fontSize"  value="#{cc.attrs.fontSize}">
+							            <f:selectItem itemLabel="12" itemValue="12" />
+							            <f:selectItem itemLabel="16" itemValue="16" />
+							            <f:selectItem itemLabel="20" itemValue="20" />
+							            <f:selectItem itemLabel="24" itemValue="24" />
+							            <p:ajax partialSubmit="true" execute="@this" update="inputarea"/>
+							        </p:selectOneListbox>
+						        </p:menuitem>
+						  
+			                </p:submenu>
+			            </p:menu>
+			        </f:facet>
 				</p:panel>
 			</div>
+
 
 	</composite:implementation>
 </html>
