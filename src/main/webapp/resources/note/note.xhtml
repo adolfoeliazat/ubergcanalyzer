@@ -17,6 +17,8 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 		<composite:attribute name="interval" default="3000	" />
 		<composite:attribute name="savingNotificationText" default="saving..." />
 		<composite:attribute name="savedNotificationText" default="changes saved" />
+		<composite:attribute name="header" default="Note" />
+		
 	</composite:interface>
 	
 	
@@ -31,8 +33,6 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 			<link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css' />
 			
 			<script type="text/javascript">
-
-				
 				var timeout;
 				if(!de) var de = {}
 				if(!de.morton) de.morton = {
@@ -45,28 +45,24 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 						timeout = window.setTimeout(request, ${cc.attrs.interval});
 						de.morton.showSavingText();
 					},
-					
 					showSavingText : function() {
 						var el = jQuery("#statustext");
 						el.text("${cc.attrs.savingNotificationText}");
 						el.show();
 					},
-					
 					showSavedText : function() {
 						var el = jQuery("#statustext");
 						el.text("${cc.attrs.savedNotificationText}");
 						el.show().delay(1000).fadeOut();
 					}
 				}
-				
-				
-				
 			</script>
-			<div id="ccpanel" class="ccpanel" >
-			
-				<p:panel header="Note" showDetails="true" >
+			<div  class="m-note-panel" >
+				<p:panel header="#{cc.attrs.header}" showDetails="true" >
+					<h:outputText id="statustext"></h:outputText>
 					<span id="statustext" ></span>
-					<h:inputTextarea  onkeydown="de.morton.saveNoteText(this, event)"  id="inputarea" styleClass="ccnote"  value="#{cc.attrs.text}" 
+					
+					<h:inputTextarea  onkeydown="de.morton.saveNoteText(this, event)"  id="inputarea" styleClass="m-note-inputtextarea"  value="#{cc.attrs.text}" 
 					style="border:none; resize:none;width:100%;height:100%;font-size:#{cc.attrs.fontSize}pt;
 					font-family:#{cc.attrs.fontFamily}, cursive"  />
 					
@@ -75,9 +71,9 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 			            <p:menu>
 			                <p:submenu  label="Fonts">
 			                <p:menuitem>
-			                    <p:selectOneListbox styleClass="morton-selectonelistbox"  id="fontFamily"  value="#{cc.attrs.fontFamily}">
-						            <f:selectItem styleClass="ui-widget" itemLabel="Noto Serif" itemValue="Noto Serif" />
-						            <f:selectItem itemLabel="Fondamento" itemValue="Fondamento" />
+			                    <p:selectOneListbox  styleClass="m-note-selectonelistbox"  id="fontFamily"  value="#{cc.attrs.fontFamily}">
+						            <f:selectItem  itemLabel="Noto Serif" itemValue="Noto Serif" />
+						            <f:selectItem id="test" itemLabel="Fondamento" itemValue="Fondamento" >blabalabl</f:selectItem>
 						            <f:selectItem itemLabel="Happy Monkey" itemValue="Happy Monkey" />
 						            <f:selectItem itemLabel="Clicker Script" itemValue="Clicker Script" />
 						            <f:selectItem itemLabel="Satisfy" itemValue="Satisfy" />
@@ -88,7 +84,7 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 			                </p:submenu>
 			                <p:submenu label="Font size">
 			                	 <p:menuitem ajax="false">
-				                	 <p:selectOneListbox styleClass="morton-selectonelistbox" id="fontSize"  value="#{cc.attrs.fontSize}">
+				                	 <p:selectOneListbox styleClass="m-note-selectonelistbox" id="fontSize"  value="#{cc.attrs.fontSize}">
 							            <f:selectItem itemLabel="12" itemValue="12" />
 							            <f:selectItem itemLabel="16" itemValue="16" />
 							            <f:selectItem itemLabel="20" itemValue="20" />
@@ -102,7 +98,7 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 			        </f:facet>
 				</p:panel>
 			</div>
-
+			
 
 	</composite:implementation>
 </html>

@@ -1,22 +1,18 @@
 
 
 
-.ui-widget .ccnote {
+.ui-widget .m-note-inputtextarea {
 	background-image:url("#{resource['images:squared.jpg']}");
-	font-family: 'Noto Serif', serif;
 	padding:5px;
-	font-size:14pt;
 }
 
-
-
-.ccpanel .ui-panel-content {
+.m-note-panel .ui-panel-content {
 	position:relative;
 	padding:0;
 	height:300px;
 }
 
-.ccpanel #statustext {
+.m-note-panel #statustext {
 	position:absolute;
 	right:54px;
 	font-size:9pt;
@@ -28,7 +24,7 @@
 	font-size: 9pt;
 }
 
-.ui-selectonelistbox.morton-selectonelistbox {
+.ui-selectonelistbox.m-note-selectonelistbox {
 	background:transparent;
 	box-shadow:none;
 	border:0px;
