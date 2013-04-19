@@ -18,7 +18,6 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 		<composite:attribute name="savingNotificationText" default="saving..." />
 		<composite:attribute name="savedNotificationText" default="changes saved" />
 		<composite:attribute name="header" default="Note" />
-		
 	</composite:interface>
 	
 	
@@ -26,7 +25,7 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 			<h:outputStylesheet library="css" name="ccnote.css"  />
 			<h:outputScript library="javax.faces" name="jsf.js"/>
 			
-			<link href='http://fonts.googleapis.com/css?family=Fondamento' rel='stylesheet' type='text/css' />
+			<link href='http://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css' />
 			<link href='http://fonts.googleapis.com/css?family=Happy+Monkey' rel='stylesheet' type='text/css' />
 			<link href='http://fonts.googleapis.com/css?family=Clicker+Script' rel='stylesheet' type='text/css' />
 			<link href='http://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css' />
@@ -46,21 +45,35 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 						de.morton.showSavingText();
 					},
 					showSavingText : function() {
-						var el = jQuery("#statustext");
+						var el = jQuery("#" + this.statusTextId());
 						el.text("${cc.attrs.savingNotificationText}");
 						el.show();
 					},
 					showSavedText : function() {
-						var el = jQuery("#statustext");
+						var el = jQuery("#" + this.statusTextId());
 						el.text("${cc.attrs.savedNotificationText}");
 						el.show().delay(1000).fadeOut();
+					},
+					statusTextId : function() {
+						var id = "#{p:component('statustext')}".replace(/:/g, "\\:");
+						return id;					
 					}
 				}
+				
+				jQuery(document).ready(function() {
+					var id = "#{p:component('fontFamily')}".replace(/:/g, "\\:");
+					var component = jQuery("#" + id);
+					var ul = component.children("ul").first();
+					
+					ul.children("li").each(function() {
+						var el = jQuery(this);
+						el.css("font-family", el.text());
+					});		
+				});
 			</script>
 			<div  class="m-note-panel" >
 				<p:panel header="#{cc.attrs.header}" showDetails="true" >
-					<h:outputText id="statustext"></h:outputText>
-					<span id="statustext" ></span>
+					<h:outputText styleClass="m-note-statustext" id="statustext"></h:outputText>
 					
 					<h:inputTextarea  onkeydown="de.morton.saveNoteText(this, event)"  id="inputarea" styleClass="m-note-inputtextarea"  value="#{cc.attrs.text}" 
 					style="border:none; resize:none;width:100%;height:100%;font-size:#{cc.attrs.fontSize}pt;
@@ -68,15 +81,15 @@ xmlns:composite="http://java.sun.com/jsf/composite">
 					
 					
 				 	<f:facet name="options">
-			            <p:menu>
+			            <p:menu styleClass="m-note-menu">
 			                <p:submenu  label="Fonts">
 			                <p:menuitem>
 			                    <p:selectOneListbox  styleClass="m-note-selectonelistbox"  id="fontFamily"  value="#{cc.attrs.fontFamily}">
+						            <f:selectItem itemLabel="Satisfy" itemValue="Satisfy" />
 						            <f:selectItem  itemLabel="Noto Serif" itemValue="Noto Serif" />
-						            <f:selectItem id="test" itemLabel="Fondamento" itemValue="Fondamento" >blabalabl</f:selectItem>
+						            <f:selectItem  itemLabel="Patrick Hand SC" itemValue="Patrick Hand SC" />
 						            <f:selectItem itemLabel="Happy Monkey" itemValue="Happy Monkey" />
 						            <f:selectItem itemLabel="Clicker Script" itemValue="Clicker Script" />
-						            <f:selectItem itemLabel="Satisfy" itemValue="Satisfy" />
 						            <p:ajax partialSubmit="true" execute="@this" update="inputarea"/>
 						        </p:selectOneListbox>
 			                </p:menuitem>

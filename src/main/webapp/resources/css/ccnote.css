@@ -1,6 +1,4 @@
 
-
-
 .ui-widget .m-note-inputtextarea {
 	background-image:url("#{resource['images:squared.jpg']}");
 	padding:5px;
@@ -12,7 +10,7 @@
 	height:300px;
 }
 
-.m-note-panel #statustext {
+.m-note-statustext {
 	position:absolute;
 	right:54px;
 	font-size:9pt;
@@ -20,8 +18,8 @@
 	width:100px;	
 }
 
-.ui-menu {
-	font-size: 9pt;
+.ui-menu.m-note-menu {
+	font-size: 11pt;
 }
 
 .ui-selectonelistbox.m-note-selectonelistbox {
