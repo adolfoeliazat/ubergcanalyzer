@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:cc="http://java.sun.com/jsf/composite/note">
+
+	<h:head>
+	    <style type="text/css">
+	  
+	        
+	    </style>
+	
+	</h:head>
+	
+	<h:body>
+		<h:outputStylesheet library="css" name="layout.css"/>
+		
+		<p:layout fullPage="true">
+		
+		    <p:layoutUnit position="north" gutter="0" size="100"  resizable="true" closable="true" collapsible="true">
+		    	<div class="full"></div>
+		    </p:layoutUnit>
+		
+		  
+		    <p:layoutUnit header="left" position="west" gutter="0" size="200"  resizable="true" closable="true" collapsible="true">
+		    	<div class="full" />
+		    </p:layoutUnit>
+		
+		  
+		    <p:layoutUnit position="center" gutter="0">
+		    	<ui:insert name="note">
+		    		<ui:include src="/section/note.xhtml"></ui:include>
+		    	</ui:insert>
+		    </p:layoutUnit>
+		
+		</p:layout>
+
+	</h:body>
+	
+	
+	
+</html>

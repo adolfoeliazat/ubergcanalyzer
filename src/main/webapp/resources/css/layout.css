@@ -1,0 +1,11 @@
+/* Removes all borders and paddings from the primefaces layout */
+
+.ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap, .ui-layout-bd, .ui-layout-hd{
+        /*  border: none; */
+}
+.ui-layout-unit {
+    padding: 0.0em;
+}
+.ui-layout-unit .ui-layout-unit-content {
+    padding: 0.0em 0em;
+}
