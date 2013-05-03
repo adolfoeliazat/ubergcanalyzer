@@ -19,19 +19,22 @@ xmlns:cc="http://java.sun.com/jsf/composite/note">
 		<p:layout fullPage="true">
 		
 		    <p:layoutUnit position="north" gutter="0" size="100"  resizable="true" closable="true" collapsible="true">
-		    	<div class="full"></div>
+		    	<ui:include src="section/header.xhtml"></ui:include>
 		    </p:layoutUnit>
 		
 		  
 		    <p:layoutUnit header="left" position="west" gutter="0" size="200"  resizable="true" closable="true" collapsible="true">
-		    	<div class="full" />
+		    	<ui:include src="section/sidebar.xhtml"></ui:include>
 		    </p:layoutUnit>
 		
 		  
 		    <p:layoutUnit position="center" gutter="0">
-		    	<ui:insert name="note">
-		    		<ui:include src="/section/note.xhtml"></ui:include>
-		    	</ui:insert>
+		    		<!-- 
+		    		<ui:include src="section/fileupload.xhtml"></ui:include>
+		    		-->
+		    		<ui:include src="section/note.xhtml"></ui:include>
+		    		<ui:include src="section/data.xhtml"></ui:include>
+		    		<ui:include src="section/charts.xhtml"></ui:include>
 		    </p:layoutUnit>
 		
 		</p:layout>

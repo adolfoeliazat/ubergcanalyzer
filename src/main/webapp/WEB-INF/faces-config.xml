@@ -24,6 +24,15 @@
       http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
               version="2.0">
 
+ <render-kit>
+      <renderer>
+         <component-family>org.primefaces.component</component-family>
+         <renderer-type>org.primefaces.component.DashboardRenderer</renderer-type>
+         <renderer-class>de.morten.web.DashboardRenderer</renderer-class>
+      </renderer>
+   </render-kit>
+
+
 <!-- 
   <navigation-rule>
     <from-view-id>/calculator.xhtml</from-view-id>

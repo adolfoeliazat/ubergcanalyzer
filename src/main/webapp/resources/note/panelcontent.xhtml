@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:composite="http://java.sun.com/jsf/composite">
+
+ <head />
+ <body>
+	 <ui:composition>
+	 				<h:outputText styleClass="m-note-statustext" id="statustext"></h:outputText>
+				
+					<h:inputTextarea  onkeydown="de.morton.saveNoteText(this, event)"  id="inputarea" styleClass="m-note-inputtextarea"  value="#{cc.attrs.text}" 
+					style="border:none; resize:none;width:100%;height:100%;font-size:#{cc.attrs.fontSize}pt;
+					font-family:#{cc.attrs.fontFamily}, cursive"  />
+					
+					
+				 	<f:facet name="options">
+			            <p:menu styleClass="m-note-menu">
+			                <p:submenu  label="Fonts">
+			                <p:menuitem>
+			                    <p:selectOneListbox  styleClass="m-note-selectonelistbox"  id="fontFamily"  value="#{cc.attrs.fontFamily}">
+						            <f:selectItem itemLabel="Satisfy" itemValue="Satisfy" />
+						            <f:selectItem  itemLabel="Noto Serif" itemValue="Noto Serif" />
+						            <f:selectItem  itemLabel="Patrick Hand SC" itemValue="Patrick Hand SC" />
+						            <f:selectItem itemLabel="Happy Monkey" itemValue="Happy Monkey" />
+						            <f:selectItem itemLabel="Clicker Script" itemValue="Clicker Script" />
+						            <p:ajax partialSubmit="true" execute="@this" update="inputarea"/>
+						        </p:selectOneListbox>
+			                </p:menuitem>
+			              
+			                </p:submenu>
+			                <p:submenu label="Font size">
+			                	 <p:menuitem ajax="false">
+				                	 <p:selectOneListbox styleClass="m-note-selectonelistbox" id="fontSize"  value="#{cc.attrs.fontSize}">
+							            <f:selectItem itemLabel="12" itemValue="12" />
+							            <f:selectItem itemLabel="16" itemValue="16" />
+							            <f:selectItem itemLabel="20" itemValue="20" />
+							            <f:selectItem itemLabel="24" itemValue="24" />
+							            <p:ajax partialSubmit="true" execute="@this" update="inputarea"/>
+							        </p:selectOneListbox>
+						        </p:menuitem>
+						  
+			                </p:submenu>
+			            </p:menu>
+			        </f:facet>
+	 </ui:composition>
+	 
+ </body>
+ </html>

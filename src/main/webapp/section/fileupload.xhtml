@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:p="http://primefaces.org/ui"
+ xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+	    <style type="text/css">
+	  
+	        
+	    </style>
+	
+	</h:head>
+ <h:body>
+ 	<ui:composition>
+ 			<p:panel header="File Selection" style="width:600px;">
+					<p:fileUpload fileUploadListener="#{fileUploadController.upload}"
+						allowTypes="/(\.|\/)(.*)$/" 
+						sizeLimit="100000" 
+						description="Select File"
+						auto="false"
+						update="analyseResultGroup messages"/>
+						
+						<p:growl id="messages" showDetail="true"/> 
+					
+						<h:panelGroup id="analyseResultGroup">
+							<div id="analyseResult">
+								<ui:repeat var="result" value="#{analyseResults.all}">
+									<div>
+										<p:commandButton action="#{chart.show(result)}" value="#{result.name}"/>
+									</div>
+								</ui:repeat>
+							</div>
+						</h:panelGroup>
+			</p:panel>	
+		</ui:composition>
+ </h:body>
+</html>
