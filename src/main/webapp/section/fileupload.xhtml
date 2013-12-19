@@ -7,13 +7,14 @@
 	<h:head>
 	    <style type="text/css">
 	  
+
 	        
 	    </style>
 	
 	</h:head>
  <h:body>
  	<ui:composition>
- 			<p:panel header="File Selection" style="width:600px;">
+ 			<p:panel id="fileupload" header="File Selection" >
 					<p:fileUpload fileUploadListener="#{fileUploadController.upload}"
 						allowTypes="/(\.|\/)(.*)$/" 
 						sizeLimit="100000" 

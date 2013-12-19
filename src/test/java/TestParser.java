@@ -24,6 +24,17 @@ public class TestParser {
 
 
 	@Test
+	public void testRegex() {
+		final Pattern p = Pattern.compile("^go.*?Right");
+		final Matcher m = p.matcher("goLeftRightRightDown");
+		
+		while(m.find()) {
+			System.out.println(m.group());
+		}
+		
+	}
+	
+	@Test
 	public void test2() throws ParseException {
 		final String minor = "2013-03-23T15:06:05.424+0100: 1,147: " +
 				"[GC [PSYoungGen: 19843K->2558K(38208K)] "

@@ -1,11 +1,55 @@
 /* Removes all borders and paddings from the primefaces layout */
 
 .ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap, .ui-layout-bd, .ui-layout-hd{
-        /*  border: none; */
+          border: none; 
 }
 .ui-layout-unit {
     padding: 0.0em;
 }
 .ui-layout-unit .ui-layout-unit-content {
     padding: 0.0em 0em;
+}
+
+.ui-layout-unit-content {
+	
+	background-color:#333;
+}
+
+.ui-layout-pane-center .ui-layout-unit-content {
+	
+	background-image:url("#{resource['images:bg.jpg']}");
+}
+
+/*
+.ui-widget-header {
+	
+	background: -webkit-linear-gradient(top, #5d6167 0%, #393939 100%)
+}
+/*
+
+/********************* */
+
+.ui-dashboard-column {
+	width:50%;
+}
+
+.m-note-panel {
+	height:235px;
+}
+
+.ui-panel {
+	min-height: 265px;
+	margin:20px 10px 20px 10px;
+}
+
+body {
+
+	margin:0;
+	padding:0;
+	font-size:11pt;
+	
+	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+ 
+	
+	/*color: #616161*/;
 }

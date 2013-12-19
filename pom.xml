@@ -10,7 +10,24 @@
     <version>1.0-SNAPSHOT</version>
     <name>sample</name>
     
+    <repositories>
+		<repository>  
+		    <id>prime-repo</id>  
+		    <name>PrimeFaces Maven Repository</name>  
+		    <url>http://repository.primefaces.org</url>  
+		    <layout>default</layout>  
+		</repository>  
+	</repositories>
+    
     <dependencies>
+    
+    	<dependency>
+		  <groupId>de.java.regexdsl</groupId>
+		  <artifactId>regexdsl</artifactId>
+		  <version>1.0-SNAPSHOT</version>
+		</dependency>
+    	
+    
 		<dependency>
 		  <groupId>org.apache.openejb</groupId>
 		  <artifactId>apache-tomee</artifactId>
@@ -93,13 +110,13 @@
 			<version>2.0.0</version>
 		</dependency>
 
-<!-- 
+
 		<dependency>
 			<groupId>de.morten</groupId>
 			<artifactId>components</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		-->
+		
 
     </dependencies>
     

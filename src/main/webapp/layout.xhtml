@@ -28,7 +28,7 @@ xmlns:cc="http://java.sun.com/jsf/composite/note"
         <h:outputText value="West unit content." />
     </p:layoutUnit>
 
-    <p:layoutUnit position="center">
+    <p:layoutUnit position="center" size="300">
     	<h:form>
     	
     		<!-- 
@@ -38,6 +38,10 @@ xmlns:cc="http://java.sun.com/jsf/composite/note"
 			-->
 			<cc:note text="#{noteController.text}" width="50" height="15"/>
 		</h:form>
+    </p:layoutUnit>
+    
+        <p:layoutUnit  position="east"  gutter="2" resizable="true" closable="true" collapsible="true">
+    	
     </p:layoutUnit>
 
 </p:layout>

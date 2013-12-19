@@ -16,29 +16,48 @@ xmlns:cc="http://java.sun.com/jsf/composite/note">
 	<h:body>
 		<h:outputStylesheet library="css" name="layout.css"/>
 		
-		<p:layout fullPage="true">
-		
-		    <p:layoutUnit position="north" gutter="0" size="100"  resizable="true" closable="true" collapsible="true">
-		    	<ui:include src="section/header.xhtml"></ui:include>
-		    </p:layoutUnit>
-		
-		  
-		    <p:layoutUnit header="left" position="west" gutter="0" size="200"  resizable="true" closable="true" collapsible="true">
-		    	<ui:include src="section/sidebar.xhtml"></ui:include>
-		    </p:layoutUnit>
-		
-		  
-		    <p:layoutUnit position="center" gutter="0">
-		    		<!-- 
-		    		<ui:include src="section/fileupload.xhtml"></ui:include>
-		    		-->
-		    		<ui:include src="section/note.xhtml"></ui:include>
-		    		<ui:include src="section/data.xhtml"></ui:include>
-		    		<ui:include src="section/charts.xhtml"></ui:include>
-		    </p:layoutUnit>
-		
-		</p:layout>
+		<div class="bla">
+		<h:form>
+			<p:layout fullPage="true">
+			
+				   <!-- 
+			    <p:layoutUnit position="north" gutter="0" size="70"  resizable="true" closable="true" collapsible="true">
+			    	<ui:include src="section/header.xhtml"></ui:include>
+			    </p:layoutUnit>
+				-->    
+			
+			  
+			    <p:layoutUnit  position="west" gutter="0" size="120"  resizable="true" closable="true" collapsible="true">
+			    		<ui:include src="section/sidebar.xhtml"></ui:include>
+			    </p:layoutUnit>
+			
+			  
+			    <p:layoutUnit position="center" gutter="0" >
+			    		<ui:include src="section/header.xhtml"></ui:include>
+			    		<p:dashboard model="#{myDashboard.model}">
 
+				    		<ui:include src="section/fileupload.xhtml" />
+			    			<ui:include src="section/note.xhtml" />
+			    			<ui:remove>
+				    			<ui:include src="section/data.xhtml"/>
+				    			<ui:include src="section/charts.xhtml"/>
+				    		</ui:remove>
+		     			   
+			    		</p:dashboard>
+			    </p:layoutUnit>
+			
+			    <!-- 
+			    <p:layoutUnit  position="east" gutter="0" size="20"  resizable="true" closable="true" collapsible="true">
+			    </p:layoutUnit>
+			
+			    <p:layoutUnit  position="south" gutter="0" size="10"  resizable="true" closable="true" collapsible="true">
+			    </p:layoutUnit>
+			    -->
+
+			
+			</p:layout>
+		</h:form>
+		</div>
 	</h:body>
 	
 	
