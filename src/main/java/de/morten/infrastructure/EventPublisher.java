@@ -13,7 +13,11 @@ import com.google.common.eventbus.EventBus;
  */
 public class EventPublisher {
 		private static final EventPublisher instance = new EventPublisher();
-		private final ThreadLocal<EventBus> eventBus = new ThreadLocal<EventBus>();
+		private final ThreadLocal<EventBus> eventBus = new ThreadLocal<EventBus>() {
+			@Override public EventBus initialValue() {
+				return new EventBus();
+			}
+		};
 		private final List<Object> registeredHandlers = new ArrayList<Object>();
 		
 		/**

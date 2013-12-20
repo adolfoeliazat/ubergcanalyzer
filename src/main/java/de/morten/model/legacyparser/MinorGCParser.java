@@ -1,4 +1,4 @@
-package de.morten.model.parser;
+package de.morten.model.legacyparser;
 
 import java.util.Date;
 
@@ -10,7 +10,7 @@ import org.joda.time.format.ISODateTimeFormat;
 
 import de.morten.model.GCMemStats;
 import de.morten.model.GCTimeStats;
-import de.morten.model.PSYoungGenGCEvent;
+import de.morten.model.MinorGCEvent;
 
 public class MinorGCParser {
 
@@ -27,13 +27,13 @@ public class MinorGCParser {
 		return this.split.length == 13 && this.split[3].equals("[PSYoungGen:");
 	}
 	
-	public PSYoungGenGCEvent parse()
+	public MinorGCEvent parse()
 	{
 		final GCTimeStats timeStats = parseTimeStats(this.split);
 		final GCMemStats youngGenChange = parseYoungGenChange(this.split);
 		final GCMemStats oldGenChange = parseOldGenChange(this.split);
 		
-		final PSYoungGenGCEvent event = new PSYoungGenGCEvent(timeStats, youngGenChange, oldGenChange);
+		final MinorGCEvent event = new MinorGCEvent("minor", timeStats, youngGenChange, oldGenChange);
 		return event;
 		
 	}

@@ -9,17 +9,15 @@ package de.morten.model;
  * 
  * @author Christian Bannes
  */
-public class PSYoungGenGCEvent extends AbstractGCEvent {
-	/** the unique name of this garbage collector */
-	private final static String NAME = "PSYoungGen";
+public class MinorGCEvent extends AbstractGCEvent {
 	/** the change of young generation during this gc event */
 	private GCMemStats youngGenChange;
 	/** the change ofl old generation during this gc event */
 	private GCMemStats oldGenChange;
  
 	
-	public PSYoungGenGCEvent(final GCTimeStats timeStats, final GCMemStats youngGenChange, final GCMemStats oldGenChange) {
-		super(NAME, timeStats);
+	public MinorGCEvent(final String name, final GCTimeStats timeStats, final GCMemStats youngGenChange, final GCMemStats oldGenChange) {
+		super(name, timeStats);
 		this.youngGenChange = youngGenChange;
 		this.oldGenChange = oldGenChange;
 	}

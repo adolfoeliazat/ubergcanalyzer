@@ -21,7 +21,7 @@ import org.primefaces.model.UploadedFile;
 import de.morten.model.AnalyseResult;
 import de.morten.model.AnalyseResults;
 import de.morten.model.GCEvent;
-import de.morten.model.parser.GCParser;
+import de.morten.model.legacyparser.GCParser;
 
 
 @RequestScoped
@@ -41,7 +41,7 @@ public class FileUploadController {
 			final AnalyseResult result = new AnalyseResult(file.getFileName(), events);
 			this.results.add(result);
 			
-			test.setOutput("file was uploaded...");
+			test.setOutput("upload successfull");
 			
 				FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 				FacesContext.getCurrentInstance().addMessage(null, msg);

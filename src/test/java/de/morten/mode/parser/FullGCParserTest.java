@@ -5,8 +5,8 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import de.morten.model.GCTimeStats;
-import de.morten.model.PSYoungGenGCEvent;
-import de.morten.model.parser.MinorGCParser;
+import de.morten.model.MinorGCEvent;
+import de.morten.model.legacyparser.MinorGCParser;
 
 
 public class FullGCParserTest {

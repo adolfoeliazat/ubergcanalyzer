@@ -5,8 +5,8 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import de.morten.model.GCTimeStats;
-import de.morten.model.PSYoungGenGCEvent;
-import de.morten.model.parser.MinorGCParser;
+import de.morten.model.MinorGCEvent;
+import de.morten.model.legacyparser.MinorGCParser;
 
 
 public class MinorGCParserTest {
@@ -35,7 +35,7 @@ public class MinorGCParserTest {
 				+ "19843K->2558K(125632K), 0,0121400 secs] [Times: user=0,03 sys=0,00, real=0,01 secs] ";
 		
 		final MinorGCParser parser = new MinorGCParser(line);
-		final PSYoungGenGCEvent event = parser.parse();
+		final MinorGCEvent event = parser.parse();
 		
 		final GCTimeStats timeStats = event.getTimeStats();
 		Assert.assertEquals(0.01, timeStats.getDuration());

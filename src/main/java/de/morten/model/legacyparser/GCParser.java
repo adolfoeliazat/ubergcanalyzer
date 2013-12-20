@@ -1,4 +1,4 @@
-package de.morten.model.parser;
+package de.morten.model.legacyparser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
