@@ -2,30 +2,50 @@ package de.morten.model.legacyparser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.eventbus.Subscribe;
 
+import de.morten.infrastructure.EventPublisher;
 import de.morten.model.GCEvent;
+import de.morten.model.parnew.ParNewParser;
+import de.morten.model.task.TaskChain;
 
 
 
 public class GCParser {
+
+	private final TaskChain consumer;
+	
+	public GCParser() {
+		final TaskChain taskChain = new TaskChain(Arrays.asList(new ParNewParser()));
+		this.consumer = taskChain;
+	}
+	
+	
 	
 	public Map<String, List<GCEvent>> parse(final BufferedReader reader) throws IOException
 	{
+		
 		final Map<String, List<GCEvent>> eventNameToEvents = Maps.newHashMap();
+		final Object handler = new Object() {
+			@Subscribe public void handle(final GCEvent event) {
+				GCParser.this.add(eventNameToEvents, event);
+			}
+		};
+		EventPublisher.instance().register(handler);
+		
+		int i = 0;
 		String line = null;
 		while((line = reader.readLine()) != null)
 		{
-			final MinorGCParser parser = new MinorGCParser(line);
-			if(parser.matches())
-			{
-				final GCEvent event = parser.parse();
-				add(eventNameToEvents, event);
-			}
+			i++;
+			System.out.println("parsing line num " + i);
+			this.consumer.consume(line);
 		}
 		return eventNameToEvents;
 	}

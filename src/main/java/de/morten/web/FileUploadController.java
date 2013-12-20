@@ -36,6 +36,8 @@ public class FileUploadController {
 			final BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputstream()));
 			
 			final GCParser parser = new GCParser();
+			
+			
 			final Map<String, List<GCEvent>> events = parser.parse(reader);
 			
 			final AnalyseResult result = new AnalyseResult(file.getFileName(), events);

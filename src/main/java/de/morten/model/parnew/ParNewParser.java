@@ -23,7 +23,6 @@ import de.morten.model.parser.AbstractParser;
 public class ParNewParser extends AbstractParser {
 
 	private final static Regex PAR_NEW = createParNewPattern();
-	private static final String START_PATTERN = "[ParNew";
 	
 	@Override
 	public boolean isMultiLine() {
@@ -31,8 +30,13 @@ public class ParNewParser extends AbstractParser {
 	}
 
 	@Override
-	public String startSequence() {
-		return START_PATTERN;
+	public boolean startParsing(final String message) {
+		return message.contains("[ParNew");
+	}
+	
+	@Override
+	public boolean inlineDetected(final String message) {
+		return !message.trim().endsWith("]");
 	}
 
 	@Override
