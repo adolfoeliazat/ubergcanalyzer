@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -14,6 +15,8 @@ import javax.inject.Named;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
+
+import com.google.common.collect.Maps;
 
 import de.morten.model.AnalyseResult;
 import de.morten.model.GCEvent;
@@ -52,16 +55,51 @@ public class ChartBean implements Serializable {
     	for(final Map.Entry<String, List<GCEvent>> entry : events.entrySet()) {
     		System.out.println("creating new series " + entry.getKey());
     		final LineChartSeries series = new LineChartSeries(entry.getKey());
-    		/*
-    		int i = 0;
+    		
+    		
+    		//i want time -> occurences
+    		final TreeMap<Integer, Integer> stats = new TreeMap<Integer, Integer>();
             for(final GCEvent event : entry.getValue()) {
-            	series.set(i + (int)(3*Math.random()), event.getTimeStats().getDuration()*1000);
-            }*/
+            	final int duration = (int)(event.getTimeStats().getDuration()*1000);
+            	if(stats.get(duration) == null)
+            		stats.put(duration, 0);
+            		
+            	stats.put(duration, stats.get(duration)+1);
+            }
+            
+            
+            
+           // for(final Map.Entry<Integer, Integer> e : stats.entrySet())
+            for(int i = 1; i < stats.lastKey(); i++)
+            {
+            	int val = stats.get(i) == null? 0 : stats.get(i);
+            	series.set(i, val);
+            }
+    		
+            /*
+            for(final GCEvent event : entry.getValue()) {
+            	final double duration =  event.getTimeStats().getDuration()*1000;
+            	final int d = (int)duration;
+            	System.out.println("adding: (" + i + "," + d + ")");
+            	series.set(i, d);
+            	i++;
+            }
+            */
+    		
+    		
+//    		for(int i = 0; i < 10000; i++)
+//    		{
+//    			double d  = Math.random()*10;
+//    			System.out.println(d);
+//    			
+//    			series.set(i, (int)d);
+//    		}
+    		/*
     		series.set(1, 10);
     		series.set(2, 5);
     		series.set(10, 10);
     		series.set(20, 30);
-    		
+    		*/
     		
             System.out.println("adding new series " + series.getLabel());
             this.linearModel.addSeries(series);

@@ -45,7 +45,6 @@ class Task {
 	}
 	
 	public boolean consume(final String message) {
-		double d = System.currentTimeMillis();
 		Task t = this;
 		boolean consumed = false;
 		while(t != null) {
@@ -57,7 +56,6 @@ class Task {
 			}
 			t = t.next;
 		}
-		System.out.println("duration consume: " + (System.currentTimeMillis() - d));
 		return consumed;
 	}
 }

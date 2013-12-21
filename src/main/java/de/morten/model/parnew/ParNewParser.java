@@ -59,7 +59,7 @@ public class ParNewParser extends AbstractParser {
 				.number("#timeSinceStartup").any()
 				.regex("#eden", Patterns.memstat()).any()
 				.regex("#heap", Patterns.memstat()).any()
-				.pattern("[^\\d\\.]").number("#duration").constant(" secs]")
+				.pattern("[^\\d\\.]").number("#duration").constant(" secs]").any()
 				.build();
 	}
 

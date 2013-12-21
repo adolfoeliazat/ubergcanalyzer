@@ -39,12 +39,9 @@ public class GCParser {
 		};
 		EventPublisher.instance().register(handler);
 		
-		int i = 0;
 		String line = null;
 		while((line = reader.readLine()) != null)
 		{
-			i++;
-			System.out.println("parsing line num " + i);
 			this.consumer.consume(line);
 		}
 		return eventNameToEvents;

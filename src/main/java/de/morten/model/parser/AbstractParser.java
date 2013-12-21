@@ -35,8 +35,6 @@ public abstract class AbstractParser implements TaskConsumer {
 			
 			if(inlineDetected(message)) return false;
 			
-			if(!message.trim().endsWith("]")) return false;
-			
 			final boolean success = match(this.buffer);
 			if(success) reset();
 			
