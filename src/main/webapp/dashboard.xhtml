@@ -15,9 +15,10 @@ xmlns:cc="http://java.sun.com/jsf/composite/note">
 	
 	<h:body>
 		<h:outputStylesheet library="css" name="layout.css"/>
+		<h:outputScript library="js" name="chartConfiguration.js" target="head" />
 		
 		<div class="bla">
-		<h:form>
+		<h:form id="main">
 			<p:layout fullPage="true">
 			
 				   <!-- 
@@ -56,8 +57,8 @@ xmlns:cc="http://java.sun.com/jsf/composite/note">
 			</p:layout>
 		</h:form>
 		</div>
+	<ui:debug rendered="true" hotkey="x"/>
 	</h:body>
-	
 	
 	
 </html>

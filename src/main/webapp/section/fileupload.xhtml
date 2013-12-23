@@ -3,6 +3,7 @@
  <html xmlns="http://www.w3.org/1999/xhtml"
  xmlns:ui="http://java.sun.com/jsf/facelets"
  xmlns:p="http://primefaces.org/ui"
+ xmlns:f="http://java.sun.com/jsf/core"
  xmlns:h="http://java.sun.com/jsf/html">
 	<h:head>
 	    <style type="text/css">
@@ -23,11 +24,13 @@
 						
 						<p:growl id="messages" showDetail="true"/> 
 
-						<p:commandButton update="dashboard"  value="createNewPanel" actionListener="#{myDashboard.createNewPanel}" />			
 						<h:panelGroup id="analyseResultGroup">
 							<div id="analyseResult">
 								<ui:repeat var="result" value="#{analyseResults.all}">
 									<div>
+										<p:commandButton update=":main:dashboard"  value="->#{result.name}" actionListener="#{myDashboard.createNewPanel}" >
+											<f:attribute name="result" value="#{result}" />
+										</p:commandButton>
 										<p:commandButton action="#{chart.show(result)}" value="#{result.name}"/>
 									</div>
 								</ui:repeat>

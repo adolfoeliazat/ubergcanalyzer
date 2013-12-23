@@ -16,8 +16,10 @@ import org.primefaces.model.DashboardModel;
 import org.primefaces.model.DefaultDashboardColumn;
 import org.primefaces.model.DefaultDashboardModel;
 
+import de.morten.model.AnalyseResult;
+
 @Named("myDashboard")
-@RequestScoped
+@SessionScoped
 public class MyDashBoard implements Serializable {
 
 	private DashboardModel model;
@@ -48,19 +50,23 @@ public class MyDashBoard implements Serializable {
 	
 	public void createNewPanel(final ActionEvent actionEvent)
 	{
+		
+		final UIComponent source = actionEvent.getComponent();
+		
 		final Panel panel = new Panel();
 		final String id = "panel-" + String.valueOf((int)(Math.random()*100));
 		panel.setId(id);
-		panel.setHeader("test");
+		panel.setHeader((String)source.getAttributes().get("value"));
 		panel.setClosable(true);
 		
-		ChartBean chartBean = new ChartBean();
 		final BarChart barChart = new BarChart();
-		barChart.setValue(chartBean.getLinearModel());
+		final AnalyseResult result = (AnalyseResult)source.getAttributes().get("result");
+		barChart.setValue(ChartFactory.createModel(result));
+		barChart.setExtender("chartExtender");
 		
 		panel.getChildren().add(barChart);
 		
-		final UIComponent component = actionEvent.getComponent().findComponent("dashboard");
+		final UIComponent component = actionEvent.getComponent().findComponent(":main:dashboard");
 		component.getChildren().add(panel);
 		
 		this.model.getColumn(0).addWidget(id);
