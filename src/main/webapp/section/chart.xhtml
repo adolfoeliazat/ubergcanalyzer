@@ -8,7 +8,8 @@
  <body>
 	 <ui:composition>
 		 <p:panel  id="chart" header="chart" >
-	    	<h:outputText value="Data Content" />
+	    	<p:barChart id="linear" value="#{chartBean.linearModel}" legendPosition="e" animate="true" showMarkers="false" zoom="true"  
+	     		title="Linear Chart" minY="0" maxY="2000" minX="0" style="" widgetVar="chart" />  
 		</p:panel>
 	 </ui:composition>
  </body>

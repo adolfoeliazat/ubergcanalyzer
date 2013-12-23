@@ -22,7 +22,8 @@
 						update="analyseResultGroup messages"/>
 						
 						<p:growl id="messages" showDetail="true"/> 
-					
+
+						<p:commandButton update="dashboard"  value="createNewPanel" actionListener="#{myDashboard.createNewPanel}" />			
 						<h:panelGroup id="analyseResultGroup">
 							<div id="analyseResult">
 								<ui:repeat var="result" value="#{analyseResults.all}">

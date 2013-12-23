@@ -45,8 +45,20 @@ public class ChartBean implements Serializable {
         return linearModel;
     }
 
-
     public  void createLinearModel() {
+    	final LineChartSeries series = new LineChartSeries("test");
+    	series.set(0, 1);
+    	series.set(1, 10);
+    	series.set(2, 3);
+    	series.set(3, 20);
+    	series.set(4, 5);
+    	series.set(5, 30);
+    	
+    	this.linearModel = new CartesianChartModel();
+    	this.linearModel.addSeries(series);
+    	
+    }
+    public  void createLinearModel_() {
     	this.linearModel = new CartesianChartModel();
     	final AnalyseResult result = chart.getResult();
     	final Map<String, List<GCEvent>> events = result.getEvents();
