@@ -4,19 +4,14 @@ package de.morten.web;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.TreeMap;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.model.chart.CartesianChartModel;
-import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
-
-import com.google.common.collect.Maps;
 
 import de.morten.model.AnalyseResult;
 import de.morten.model.GCEvent;

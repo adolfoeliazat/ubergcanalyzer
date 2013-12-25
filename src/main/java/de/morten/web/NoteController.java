@@ -1,12 +1,8 @@
 package de.morten.web;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 

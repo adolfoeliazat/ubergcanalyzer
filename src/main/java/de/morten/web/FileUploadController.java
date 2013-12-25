@@ -2,15 +2,12 @@ package de.morten.web;
 
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Instance;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,7 +25,6 @@ import de.morten.model.legacyparser.GCParser;
 @Named
 public class FileUploadController {
 	@Inject private AnalyseResults results;
-	@Inject Test test;
 	
     public void upload(FileUploadEvent event) {
     	try {
@@ -43,7 +39,6 @@ public class FileUploadController {
 			final AnalyseResult result = new AnalyseResult(file.getFileName(), events);
 			this.results.add(result);
 			
-			test.setOutput("upload successfull");
 			
 				FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 				FacesContext.getCurrentInstance().addMessage(null, msg);

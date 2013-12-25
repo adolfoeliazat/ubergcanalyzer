@@ -2,7 +2,6 @@ package de.morten.web;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.event.ActionEvent;
@@ -10,7 +9,6 @@ import javax.inject.Named;
 
 import org.primefaces.component.chart.bar.BarChart;
 import org.primefaces.component.panel.Panel;
-import org.primefaces.event.DashboardReorderEvent;
 import org.primefaces.model.DashboardColumn;
 import org.primefaces.model.DashboardModel;
 import org.primefaces.model.DefaultDashboardColumn;
@@ -22,6 +20,7 @@ import de.morten.model.AnalyseResult;
 @SessionScoped
 public class MyDashBoard implements Serializable {
 
+	private static final long serialVersionUID = 5416472181361202579L;
 	private DashboardModel model;
 	
 	public MyDashBoard() {

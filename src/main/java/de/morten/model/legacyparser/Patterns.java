@@ -5,7 +5,6 @@ import de.java.regexdsl.model.RegexBuilder;
 
 
 public class Patterns {
-	private static Regex d = date();
 	
 	public static Regex date() {
 		return RegexBuilder.create()

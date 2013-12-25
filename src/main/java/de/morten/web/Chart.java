@@ -16,6 +16,7 @@ import de.morten.model.AnalyseResult;
 @ThreadSafe
 @SessionScoped
 public class Chart implements Serializable {
+	private static final long serialVersionUID = 6193940577455506169L;
 	private AnalyseResult result;
 
 	public String show(final AnalyseResult result) {
