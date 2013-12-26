@@ -9,19 +9,17 @@
 	 <ui:composition>
 	 	 <h:outputScript library="js" name="chartConfiguration.js" target="head" />
 		 <p:panel  id="chart" header="chart" >
-		    <p:tabView dynamic="true" cache="true"  id="chartView">
-				<p:tab id="tab1" title="duration (secs)">
-					 <p:barChart id="linear" value="#{chart.model}" legendPosition="e" animate="true" showMarkers="false" zoom="true"  
-				     		title="Linear Chart" minY="0" maxY="2000" minX="0" style="" widgetVar="chart" extender="chartExtender"/>  
+		    <p:tabView dynamic="true" id="chartView" cache="true">
+				<p:tab id="tab1" title="duration">
+					 <p:barChart id="duration1" value="#{durationChart.model}" legendPosition="e" animate="true" showMarkers="false" zoom="true"  
+				     		title="Linear Chart" minY="0" maxY="2000" minX="0" style="" widgetVar="chart1" extender="chartExtender"/>  
 				</p:tab>
 			
-				<p:tab id="tab2" title="avg">
-					another graph
+				<p:tab id="tab2" title="min/max">
+					 <p:barChart id="duration2" value="#{minMaxChart.model}" legendPosition="e" animate="true" showMarkers="false" zoom="true"  
+				     		title="Min/Max" minY="0" maxY="20" minX="0" style="" widgetVar="chart2" />  
 				</p:tab>
-			
-				<p:tab id="tab3" title="min">
-					another graph
-				</p:tab>
+				
 			</p:tabView>
 		</p:panel>
 	 </ui:composition>

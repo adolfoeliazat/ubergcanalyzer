@@ -15,7 +15,7 @@ import org.joda.time.DateTime;
 public class AnalyseResult implements Serializable {
 	private static final long serialVersionUID = -2983890629567244775L;
 	private final String name;
-	private Map<String, List<GCEvent>> events;
+	private final Map<String, List<GCEvent>> events;
 	
 	public AnalyseResult(final String nameSuffix, final Map<String, List<GCEvent>> events) {
 		final DateTime current  = new DateTime();
