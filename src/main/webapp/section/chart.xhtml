@@ -8,8 +8,38 @@
  <body>
 	 <ui:composition>
 		 <p:panel  id="chart" header="chart" >
-	    	<p:barChart id="linear" value="#{chartBean.linearModel}" legendPosition="e" animate="true" showMarkers="false" zoom="true"  
+		 
+		 
+	
+		 	    	
+	    	<p:tabView dynamic="true" cache="true"  id="chartView">
+
+	<p:tab id="tab1" title="duration (secs)">
+	     		
+	     		test
+	     		
+	     		
+	</p:tab>
+
+	<p:tab id="tab2" title="avg">
+		 <p:barChart id="linear" value="#{chart.model}" legendPosition="e" animate="true" showMarkers="false" zoom="true"  
 	     		title="Linear Chart" minY="0" maxY="2000" minX="0" style="" widgetVar="chart" />  
+	</p:tab>
+
+	<p:tab id="tab3" title="min">
+			<p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />
+			<h:outputText id="tab3Text" value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.
+				Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>
+	</p:tab>
+	</p:tabView>
+		 
+		 
+		 
+	    	
+	     		
+	     		
+	     		
+	     		
 		</p:panel>
 	 </ui:composition>
  </body>

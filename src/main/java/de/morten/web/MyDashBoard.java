@@ -29,9 +29,9 @@ public class MyDashBoard implements Serializable {
 		DashboardColumn column2 = new DefaultDashboardColumn();
 		
 		column1.addWidget("fileupload");
-		//column1.addWidget("chart");
+		column1.addWidget("chart");
 		column2.addWidget("ccnote");
-		//column2.addWidget("data");
+		column1.addWidget("data");
 		
 //		column3.addWidget("politics");
 //		column3.addWidget("note");
