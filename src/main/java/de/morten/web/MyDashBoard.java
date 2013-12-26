@@ -24,21 +24,17 @@ public class MyDashBoard implements Serializable {
 	private DashboardModel model;
 	
 	public MyDashBoard() {
-		model = new DefaultDashboardModel();
+		this.model = new DefaultDashboardModel();
 		DashboardColumn column1 = new DefaultDashboardColumn();
 		DashboardColumn column2 = new DefaultDashboardColumn();
 		
 		column1.addWidget("fileupload");
 		column1.addWidget("chart");
 		column2.addWidget("ccnote");
-		column1.addWidget("data");
+		column2.addWidget("data");
 		
-//		column3.addWidget("politics");
-//		column3.addWidget("note");
-//		column3.addWidget("ccnote");
-
-		model.addColumn(column1);
-		model.addColumn(column2);
+		this.model.addColumn(column1);
+		this.model.addColumn(column2);
 		
 	}
 	

@@ -22,7 +22,7 @@ import de.morten.model.GCEvent;
 @SessionScoped
 public class Chart implements Serializable {
 	private static final long serialVersionUID = 6193940577455506169L;
-	private AnalyseResult result;
+	//private AnalyseResult result;
 	private CartesianChartModel model = new CartesianChartModel();
 
 	public Chart() {
@@ -32,13 +32,20 @@ public class Chart implements Serializable {
 		series.set(2, 20);
 		series.set(3, 30);
 		
+		final LineChartSeries series2 = new LineChartSeries("second");
+		series2.set(0, 0);
+		series2.set(1, 15);
+		series2.set(2, 25);
+		series2.set(3, 10);
+		
 		
 		this.model.addSeries(series);
+		this.model.addSeries(series2);
 	}
 	
 	public void show(final AnalyseResult result) {
 	   	final CartesianChartModel linearModel = new CartesianChartModel();
-    	final Map<String, List<GCEvent>> events = this.result.getEvents();
+    	final Map<String, List<GCEvent>> events = result.getEvents();
     	
     	for(final Map.Entry<String, List<GCEvent>> entry : events.entrySet()) {
     		final LineChartSeries series = new LineChartSeries(entry.getKey());

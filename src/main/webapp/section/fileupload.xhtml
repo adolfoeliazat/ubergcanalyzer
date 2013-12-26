@@ -28,10 +28,7 @@
 							<div id="analyseResult">
 								<ui:repeat var="result" value="#{analyseResults.all}">
 									<div>
-										<p:commandButton update=":main:dashboard"  value="->#{result.name}" actionListener="#{myDashboard.createNewPanel}" >
-											<f:attribute name="result" value="#{result}" />
-										</p:commandButton>
-										<p:commandButton action="#{chart.show(result)}" value="#{result.name}"/>
+										<p:commandButton action="#{chart.show(result)}" value="#{result.name}" update=":main:chart"/>
 									</div>
 								</ui:repeat>
 							</div>
