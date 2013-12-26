@@ -9,9 +9,70 @@
  <body>
 	 <ui:composition>
 	    <p:panel id="data" header="" closable="true" >
-	    	
-	    	data...
-	    	
+	    	<p:tabView dynamic="true" id="dataView" cache="true">
+	    		<p:tab id="tab1" title="stats1">
+			  		<p:dataTable var="stat" value="#{statisticsBean.stats}">
+			  			<p:column headerText="Name">
+				            <h:outputText value="#{stat.name}" />
+				        </p:column>
+				        <p:column headerText="Total num">
+				            <h:outputText value="#{stat.num}" />
+				        </p:column>
+				
+				        <p:column headerText="Total num %">
+				            <h:outputText value="#{stat.numPercent}" />
+				        </p:column>
+				
+				        <p:column headerText="Total GC [secs]">
+				            <h:outputText value="#{stat.totalGCSecs}" />
+				        </p:column>
+				
+				        <p:column headerText="Total GC % [secs]">
+				            <h:outputText value="#{stat.totalGCSecsPercent}" />
+				        </p:column>
+			   		 </p:dataTable>
+		   		 </p:tab>
+		   		  <p:tab id="tab2" title="stats2">
+			  		<p:dataTable var="stat" value="#{statisticsBean.stats}">
+			  			<p:column headerText="Name">
+				            <h:outputText value="#{stat.name}" />
+				        </p:column>
+				        <p:column headerText="Min">
+				            <h:outputText value="#{stat.min}" />
+				        </p:column>
+				
+				        <p:column headerText="Max">
+				            <h:outputText value="#{stat.max}" />
+				        </p:column>
+				
+				        <p:column headerText="Avg">
+				            <h:outputText value="#{stat.avg}" />
+				        </p:column>
+				
+				        <p:column headerText="Median">
+				            <h:outputText value="#{stat.median}" />
+				        </p:column>
+				        <p:column headerText="Sigma">
+				            <h:outputText value="#{stat.standardDeviation}" />
+				        </p:column>
+			   		 </p:dataTable>
+		   		 </p:tab>
+		   		 <p:tab id="tab3" title="stats3">
+			  		<p:dataTable var="stat" value="#{statisticsBean.stats}">
+			  			<p:column headerText="Name">
+				            <h:outputText value="#{stat.name}" />
+				        </p:column>
+				        <p:column headerText="Overhead">
+				            <h:outputText value="#{stat.overhead}" />
+				        </p:column>
+				
+				        <p:column headerText="Throughput">
+				            <h:outputText value="#{stat.throughput}" />
+				        </p:column>
+					 </p:dataTable>
+		   		 </p:tab>
+	    </p:tabView>
+		    	
 	    	
 		</p:panel>
 	 </ui:composition>

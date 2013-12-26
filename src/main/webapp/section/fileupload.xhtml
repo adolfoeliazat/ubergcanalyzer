@@ -28,7 +28,7 @@
 							<div id="analyseResult">
 								<ui:repeat var="result" value="#{analyseResults.all}">
 									<div>
-										<p:commandButton action="#{checkedResult.set(result)}" value="#{result.name}" update=":main:chart"/>
+										<p:commandButton action="#{checkedResult.set(result)}" value="#{result.name}" update=":main:chart :main:data"/>
 									</div>
 								</ui:repeat>
 							</div>
