@@ -1,5 +1,7 @@
 package de.morten.web.statistics;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ import com.google.common.collect.Lists;
 
 import de.morten.model.AnalyseResult;
 import de.morten.model.GCEvent;
+import de.morten.model.statistics.Stats;
 import de.morten.web.CheckedResult;
 
 
@@ -34,13 +37,26 @@ public class StatisticsBean {
 		final AnalyseResult result = checkedResult.get();
 		
 		final List<Statistics> stats = Lists.newArrayList();
+		final List<GCEvent> allEvents = flatten(result.getEvents().values());
 		for(final Map.Entry<String, List<GCEvent>> entry : result.getEvents().entrySet()) {
-			final Statistics s = new Statistics(entry.getKey(), entry.getValue());
+			final Statistics s = new Statistics(entry.getKey(), entry.getValue(), allEvents);
 			stats.add(s);
 		}
 		return stats;
 	}
 	
+	
+	
+	private List<GCEvent> flatten(Collection<List<GCEvent>> values) {
+		final List<GCEvent> flatList = Lists.newArrayList();
+		for(final Collection<GCEvent> events : values) {
+			flatList.addAll(events);
+		}
+		return flatList;
+	}
+
+
+
 	/**
 	 * Collection of statistic information provided to the front end.
 	 * 
@@ -49,14 +65,28 @@ public class StatisticsBean {
 	public static class Statistics {
 		private final String name;
 		private final List<GCEvent> events;
+		private final List<GCEvent> allEvents;
+		private final List<Integer> secs = Lists.newArrayList();
+		private final int totalSecs;
+		
 		
 		/**
 		 * @param name the name of the gc events
 		 * @param events all occurrences of the event of this type
+		 * @param allEvents occurences of all events
 		 */
-		public Statistics(final String name, final List<GCEvent> events) {
+		public Statistics(final String name, final List<GCEvent> events, final List<GCEvent> allEvents) {
 			this.name = name;
 			this.events = events;
+			this.allEvents = allEvents;
+			
+			final List<Integer> secs = Lists.newArrayList();
+			for(final GCEvent event : this.events)
+			{
+				secs.add((int)event.getTimeStats().getDuration());
+			}
+			
+			this.totalSecs = sumSecs(events);
 		}
 
 		/**
@@ -83,7 +113,7 @@ public class StatisticsBean {
 		 * @return the total number of gc events of this type in percent
 		 */
 		public double  getNumPercent() {
-			return 0;
+			return this.allEvents.isEmpty()? 0 :this.events.size() / (double)this.allEvents.size();
 		}
 		
 		/**
@@ -92,17 +122,30 @@ public class StatisticsBean {
 		 * @return the total secs of this gc event
 		 */
 		public int getTotalGCSecs() {
-			return 0;
+			return this.totalSecs;
+			
 		}
 		
-		/**
+		private int sumSecs(final List<GCEvent> vals)
+		{
+			int total = 0;
+			for(final GCEvent val : vals) {
+				total += val.getTimeStats().getDuration();
+			}
+			
+			return total;
+		}
+		
+		/** 
 		 * Returns the accumulated seconds of the gc event of this type in percent
 		 * (compared to all other gc events)
 		 * 
 		 * @return the total secs of this gc event in percent
 		 */
 		public double getTotalGCSecsPercent() {
-			return 0;
+			final double secsAll = sumSecs(allEvents);
+			
+			return secsAll == 0? 0 : this.totalSecs / secsAll;
 		}
 		
 		/**
@@ -130,7 +173,7 @@ public class StatisticsBean {
 		 * @return min in secs
 		 */
 		public int getMin() {
-			return 0;
+			return Collections.min(secs);
 		}
 		
 		/**
@@ -138,7 +181,7 @@ public class StatisticsBean {
 		 * @return max in secs
 		 */
 		public int getMax() {
-			return 0;
+			return Collections.max(secs);
 		}
 		
 		/**
@@ -146,8 +189,8 @@ public class StatisticsBean {
 		 * 
 		 * @return avg in secs
 		 */
-		public int getAvg() {
-			return 0;
+		public double getAvg() {
+			return Stats.average(secs);
 		}
 		
 		/**
@@ -156,7 +199,7 @@ public class StatisticsBean {
 		 * @return median in secs
 		 */
 		public int getMedian() {
-			return 0;
+			return Stats.median(secs);
 		}
 		
 		/**
@@ -165,7 +208,7 @@ public class StatisticsBean {
 		 * @return the standard deviation in secs
 		 */
 		public double getStandardDeviation() {
-			return 0;
+			return Stats.standardDeviation(secs);
 		}
 		
 	}

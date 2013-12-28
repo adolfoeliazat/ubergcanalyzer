@@ -47,7 +47,7 @@ public class Stats {
 	 * @param values the values 
 	 * @return the median
 	 */
-	public static double median(final Collection<Integer> values)
+	public static int median(final Collection<Integer> values)
 	{
 		if(values.isEmpty()) return 0;
 		
