@@ -68,6 +68,7 @@ public class StatisticsBean {
 		private final List<GCEvent> allEvents;
 		private final List<Integer> secs = Lists.newArrayList();
 		private final int totalSecs;
+		private final double totalElapsedTimeSinceMeasurement;
 		
 		
 		/**
@@ -80,13 +81,27 @@ public class StatisticsBean {
 			this.events = events;
 			this.allEvents = allEvents;
 			
-			final List<Integer> secs = Lists.newArrayList();
 			for(final GCEvent event : this.events)
 			{
-				secs.add((int)event.getTimeStats().getDuration());
+				this.secs.add((int)event.getTimeStats().getDuration());
 			}
 			
 			this.totalSecs = sumSecs(events);
+			this.totalElapsedTimeSinceMeasurement = calcTotalTime(allEvents);
+		}
+
+		private double calcTotalTime(List<GCEvent> events) {
+			
+			final List<Double> times = Lists.newArrayList();
+			for(final GCEvent event : events)
+			{
+				times.add(event.getTimeStats().getElappsedTime());
+			}
+			
+			final double min = Collections.min(times);
+			final double max = Collections.max(times);
+			
+			return max-min;
 		}
 
 		/**
@@ -113,7 +128,7 @@ public class StatisticsBean {
 		 * @return the total number of gc events of this type in percent
 		 */
 		public double  getNumPercent() {
-			return this.allEvents.isEmpty()? 0 :this.events.size() / (double)this.allEvents.size();
+			return this.allEvents.isEmpty()? 0 :this.events.size() / (double)this.allEvents.size() * 100;
 		}
 		
 		/**
@@ -145,7 +160,7 @@ public class StatisticsBean {
 		public double getTotalGCSecsPercent() {
 			final double secsAll = sumSecs(allEvents);
 			
-			return secsAll == 0? 0 : this.totalSecs / secsAll;
+			return secsAll == 0? 0 : this.totalSecs / secsAll * 100;
 		}
 		
 		/**
@@ -155,7 +170,8 @@ public class StatisticsBean {
 		 * @return the overhead in percent
 		 */
 		public double getOverhead() {
-			return 0;
+			return this.totalElapsedTimeSinceMeasurement == 0? 0 
+					: this.totalSecs / this.totalElapsedTimeSinceMeasurement * 100;
 		}
 		
 		/**
@@ -173,7 +189,7 @@ public class StatisticsBean {
 		 * @return min in secs
 		 */
 		public int getMin() {
-			return Collections.min(secs);
+			return this.secs.isEmpty()? 0 : Collections.min(this.secs);
 		}
 		
 		/**
@@ -181,7 +197,7 @@ public class StatisticsBean {
 		 * @return max in secs
 		 */
 		public int getMax() {
-			return Collections.max(secs);
+			return this.secs.isEmpty()? 0 : Collections.max(this.secs);
 		}
 		
 		/**
@@ -190,7 +206,7 @@ public class StatisticsBean {
 		 * @return avg in secs
 		 */
 		public double getAvg() {
-			return Stats.average(secs);
+			return this.secs.isEmpty()? 0 : Stats.average(this.secs);
 		}
 		
 		/**
@@ -199,7 +215,7 @@ public class StatisticsBean {
 		 * @return median in secs
 		 */
 		public int getMedian() {
-			return Stats.median(secs);
+			return this.secs.isEmpty()? 0 : Stats.median(this.secs);
 		}
 		
 		/**
@@ -208,7 +224,7 @@ public class StatisticsBean {
 		 * @return the standard deviation in secs
 		 */
 		public double getStandardDeviation() {
-			return Stats.standardDeviation(secs);
+			return this.secs.isEmpty()? 0 : Stats.standardDeviation(this.secs);
 		}
 		
 	}
