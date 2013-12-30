@@ -1,5 +1,6 @@
 package de.morten.web.statistics;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -8,8 +9,6 @@ import java.util.Map;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import com.google.common.collect.Lists;
 
 import de.morten.model.AnalyseResult;
 import de.morten.model.GCEvent;
@@ -36,7 +35,7 @@ public class StatisticsBean {
 	public List<Statistics> getStats() {
 		final AnalyseResult result = checkedResult.get();
 		
-		final List<Statistics> stats = Lists.newArrayList();
+		final List<Statistics> stats = new ArrayList<>();
 		final List<GCEvent> allEvents = flatten(result.getEvents().values());
 		for(final Map.Entry<String, List<GCEvent>> entry : result.getEvents().entrySet()) {
 			final Statistics s = new Statistics(entry.getKey(), entry.getValue(), allEvents);
@@ -48,7 +47,7 @@ public class StatisticsBean {
 	
 	
 	private List<GCEvent> flatten(Collection<List<GCEvent>> values) {
-		final List<GCEvent> flatList = Lists.newArrayList();
+		final List<GCEvent> flatList = new ArrayList<>();
 		for(final Collection<GCEvent> events : values) {
 			flatList.addAll(events);
 		}
@@ -66,7 +65,7 @@ public class StatisticsBean {
 		private final String name;
 		private final List<GCEvent> events;
 		private final List<GCEvent> allEvents;
-		private final List<Integer> secs = Lists.newArrayList();
+		private final List<Integer> secs = new ArrayList<>();
 		private final int totalSecs;
 		private final double totalElapsedTimeSinceMeasurement;
 		
@@ -92,7 +91,7 @@ public class StatisticsBean {
 
 		private double calcTotalTime(List<GCEvent> events) {
 			
-			final List<Double> times = Lists.newArrayList();
+			final List<Double> times = new ArrayList<>();
 			for(final GCEvent event : events)
 			{
 				times.add(event.getTimeStats().getElappsedTime());

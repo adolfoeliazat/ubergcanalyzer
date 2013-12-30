@@ -1,5 +1,6 @@
 package de.morten.web.chart;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,6 @@ import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
-
-import com.google.common.collect.Lists;
 
 import de.morten.model.GCEvent;
 import de.morten.model.statistics.Stats;
@@ -43,7 +42,7 @@ public class MinMaxChart implements  Chart {
 	   	
     	for(final Map.Entry<String, List<GCEvent>> entry : events.entrySet()) {
     		
-    		final List<Integer> durations = Lists.newArrayList();
+    		final List<Integer> durations = new ArrayList<>();
             for(final GCEvent event : entry.getValue()) {
             	final int duration = (int)(event.getTimeStats().getDuration()*1000);
             	durations.add(duration);

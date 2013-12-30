@@ -2,12 +2,12 @@ package de.morten.model.legacyparser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.eventbus.Subscribe;
 
 import de.morten.infrastructure.EventPublisher;
@@ -31,7 +31,7 @@ public class GCParser {
 	public Map<String, List<GCEvent>> parse(final BufferedReader reader) throws IOException
 	{
 		
-		final Map<String, List<GCEvent>> eventNameToEvents = Maps.newHashMap();
+		final Map<String, List<GCEvent>> eventNameToEvents = new HashMap<>();
 		final Object handler = new Object() {
 			@Subscribe public void handle(final GCEvent event) {
 				GCParser.this.add(eventNameToEvents, event);
@@ -51,7 +51,7 @@ public class GCParser {
 		final List<GCEvent> events = eventNameToEvents.get(event.getName());
 		if(events == null)
 		{
-			final List<GCEvent> list = Lists.newArrayList();
+			final List<GCEvent> list = new ArrayList<>();
 			eventNameToEvents.put(event.getName(), list);
 		}
 		
