@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	
+	</h:head>
+	
+	<h:outputStylesheet library="css" name="login.css"/>
+	
+	<h:body>
+			<h1 id="loginHeader">UberGCAnalyzer</h1>
+	
+		
+			<form action="j_security_check" method="POST" name="loginForm">	
+				<p:panelGrid columns="2">
+					<f:facet name="header"><span class="light">Login</span></f:facet>
+					
+					<h:outputLabel for="j_username" value="Name"/>
+					<h:inputText id="j_username" value="" />
+					<h:outputLabel for="j_password" value="Password"/>
+					<h:inputSecret  id="j_password" />
+					
+					<f:facet name="footer"><h:commandButton type="submit" value="Submit" styleClass="with-text-shadow right" /></f:facet>			
+				</p:panelGrid>
+			</form>
+			
+	</h:body>
+
+</html>

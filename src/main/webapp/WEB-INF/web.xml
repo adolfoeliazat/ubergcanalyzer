@@ -81,6 +81,31 @@
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
 
+
+ <security-role>
+ 	<role-name>admin</role-name>
+ </security-role>
+ 
+ <security-constraint>
+ 	<web-resource-collection>
+ 		<web-resource-name></web-resource-name>
+ 		<url-pattern>/dashboard.jsf</url-pattern>
+ 	</web-resource-collection>
+ 	<auth-constraint>
+ 		<role-name>admin</role-name>
+ 	</auth-constraint>
+ </security-constraint>
+ 
+ <login-config>
+ 	<auth-method>FORM</auth-method>
+ 	
+ 	<form-login-config>
+ 		<form-login-page>/WEB-INF/login.jsf</form-login-page>
+ 		<form-error-page>/WEB-INF/loginFailed.jsf</form-error-page>
+ 	</form-login-config>
+ </login-config>
+
+
   <!-- Welcome files -->
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

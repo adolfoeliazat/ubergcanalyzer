@@ -1,0 +1,35 @@
+
+
+body {
+	
+	background-image:url("#{resource['images:login-bg.png']}");
+}
+
+.ui-panelgrid {
+	position:absolute;
+	left:592px;
+	top:298px;
+	box-shadow: 10px 10px 5px #0F0F0F;
+}
+
+#loginHeader {
+	font-size:37pt;
+	position:absolute;
+	left:574px;
+	top:30px;
+	color:white;	
+	text-shadow: 3px 3px 1px #0F0F0F;
+}
+
+.with-text-shadow {
+	text-shadow: 1px 1px 1px #707070;	
+}
+
+.right {
+	position:relative;
+	left:233px;
+}
+
+.light {
+	color: #706D6D;
+}
