@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TaskChain {
 	private final Task root = new Task(new NullTaskConsumer());
-	public TaskChain(final List<? extends TaskConsumer> list)
+	public TaskChain(final Iterable<? extends TaskConsumer> list)
 	{
 		for(final TaskConsumer t : list)
 		{

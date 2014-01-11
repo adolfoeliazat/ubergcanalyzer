@@ -35,14 +35,18 @@ xmlns:cc="http://java.sun.com/jsf/composite/note">
 			  
 			    <p:layoutUnit position="center" gutter="0" >
 			    		<ui:include src="section/header.xhtml"></ui:include>
-			    		<p:dashboard id="dashboard" model="#{myDashboard.model}">
-			    			 <p:ajax event="reorder" update="@none" />  
-
-				    		<ui:include src="section/fileupload.xhtml" />
-			    			<ui:include src="section/note.xhtml" />
-			    			<ui:include src="section/chart.xhtml" />
-			    			<ui:include src="section/data.xhtml" />
-			    		</p:dashboard>
+				    		<p:dashboard id="dashboard" model="#{myDashboard.model}">
+				    			 <p:ajax event="reorder" update="@none" />  
+	
+					    		<ui:include src="section/fileupload.xhtml" />
+				    			<ui:include src="section/note.xhtml" />
+				    			<ui:include src="section/chart.xhtml" />
+				    			<ui:include src="section/data.xhtml" />
+				    			
+				    		</p:dashboard>
+							<ui:remove>
+			    			<ui:include src="section/configuration.xhtml" />
+			    			</ui:remove>
 			    </p:layoutUnit>
 			
 			    <!-- 

@@ -15,11 +15,13 @@ import de.morten.model.GCTimeStats;
 import de.morten.model.MinorGCEvent;
 import de.morten.model.legacyparser.Patterns;
 import de.morten.model.parser.AbstractParser;
+import de.morten.model.parser.ActiveGCParser;
 
 /**
  * 
  * @author Christian Bannes
  */
+@ActiveGCParser
 public class ParNewParser extends AbstractParser {
 
 	private final static Regex PAR_NEW = createParNewPattern();

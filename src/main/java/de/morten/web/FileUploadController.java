@@ -25,13 +25,14 @@ import de.morten.model.legacyparser.GCParser;
 @Named
 public class FileUploadController {
 	@Inject private AnalyseResults results;
+	@Inject GCParser parser;
 	
     public void upload(FileUploadEvent event) {
     	try {
 			final UploadedFile file = event.getFile();
 			final BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputstream()));
 			
-			final GCParser parser = new GCParser();
+			//final GCParser parser = new GCParser();
 			
 			
 			final Map<String, List<GCEvent>> events = parser.parse(reader);
