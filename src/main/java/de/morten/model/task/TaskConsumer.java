@@ -1,7 +1,10 @@
 package de.morten.model.task;
 
+import javax.annotation.Nonnull;
+
 public interface  TaskConsumer {
-	public boolean consume(final String message);
-	public void reset();
-	public CorrelationId getCorrelationId();
+	boolean consume(@Nonnull final String message);
+	void reset();
+	@Nonnull CorrelationId getCorrelationId();
+	void setCorrelationId(@Nonnull CorrelationId id);
 }

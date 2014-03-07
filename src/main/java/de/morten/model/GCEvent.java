@@ -25,4 +25,5 @@ public interface GCEvent {
 	 * @return the event name, never null
 	 */
 	public String getName();
+	
 }

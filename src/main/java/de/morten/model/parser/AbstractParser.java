@@ -1,6 +1,10 @@
 package de.morten.model.parser;
 
 
+import javax.annotation.Nonnull;
+
+import com.google.common.base.Preconditions;
+
 import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;
 import de.morten.model.task.CorrelationId;
@@ -10,9 +14,12 @@ import de.morten.model.task.TaskConsumer;
 public abstract class AbstractParser implements TaskConsumer {
 
 	private String buffer = new String();
+	private CorrelationId correlationId = new NullCorrelationId();
 	
-	public boolean consume(final String message)
+	public boolean consume(final @Nonnull String message)
 	{
+		Preconditions.checkNotNull(message);
+		
 		return isMultiLine()? consumeMultiLine(message) : consumeSingleLine(message);
 	}
 	
@@ -46,9 +53,9 @@ public abstract class AbstractParser implements TaskConsumer {
 		return false;
 	}
 
-	@Override public CorrelationId getCorrelationId()
+	@Override public @Nonnull CorrelationId getCorrelationId()
 	{
-		return new NullCorrelationId();
+		return this.correlationId;
 	}
 	
 
@@ -72,6 +79,10 @@ public abstract class AbstractParser implements TaskConsumer {
 	
 	
 
+	public void setCorrelationId(final CorrelationId correlationId) {
+		Preconditions.checkNotNull(correlationId);
+		this.correlationId  = correlationId;
+	}
 //	private boolean startDetected(final String message) {
 //		return message.contains(startSequence());
 //	}

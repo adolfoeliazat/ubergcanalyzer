@@ -8,7 +8,8 @@ public class TaskChain {
 	{
 		for(final TaskConsumer t : list)
 		{
-			this.root.add(new IdentifiedTaskConsumer(correlationId, t));
+			t.setCorrelationId(correlationId);
+			this.root.add(t);
 		}
 	}
 	
@@ -30,6 +31,10 @@ public class TaskChain {
 		@Override
 		public CorrelationId getCorrelationId() {
 			return new NullCorrelationId();
+		}
+
+		@Override
+		public void setCorrelationId(CorrelationId id) {
 		}
 	}
 }
