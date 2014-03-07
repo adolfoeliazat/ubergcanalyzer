@@ -1,5 +1,7 @@
 package de.morten.model;
 
+import de.morten.model.task.CorrelationId;
+
 
 /**
  * Represents one garbage collection event of the 
@@ -16,8 +18,9 @@ public class MinorGCEvent extends AbstractGCEvent {
 	private GCMemStats oldGenChange;
  
 	
-	public MinorGCEvent(final String name, final GCTimeStats timeStats, final GCMemStats youngGenChange, final GCMemStats oldGenChange) {
-		super(name, timeStats);
+	public MinorGCEvent(final String name, final GCTimeStats timeStats, final GCMemStats youngGenChange, final GCMemStats oldGenChange, 
+			final CorrelationId correlationId) {
+		super(name, timeStats, correlationId);
 		this.youngGenChange = youngGenChange;
 		this.oldGenChange = oldGenChange;
 	}

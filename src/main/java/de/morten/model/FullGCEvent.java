@@ -1,5 +1,7 @@
 package de.morten.model;
 
+import de.morten.model.task.CorrelationId;
+
 
 /**
  * Represents one garbage collection event of the  full gc collector. The FULL GC collector
@@ -12,8 +14,8 @@ public class FullGCEvent extends AbstractGCEvent {
 	/** the unique name of this garbage collector */
 	private final static String NAME = "FULL GC";
 	
-	public FullGCEvent(final GCTimeStats timeStats) {
-		super(NAME, timeStats);
+	public FullGCEvent(final GCTimeStats timeStats, final CorrelationId correlationId) {
+		super(NAME, timeStats, correlationId);
 	}
 
 	/**

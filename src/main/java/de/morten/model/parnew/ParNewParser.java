@@ -82,7 +82,7 @@ public class ParNewParser extends AbstractParser {
 		final GCMemStats oldGenChange = readOldGenChange(match);
 		final GCTimeStats timeStats = readTimeStats(match);
 
-		final MinorGCEvent minorGCEvent = new MinorGCEvent("ParNew", timeStats, youngGenChange, oldGenChange);
+		final MinorGCEvent minorGCEvent = new MinorGCEvent("ParNew", timeStats, youngGenChange, oldGenChange, getCorrelationId());
 		
 		this.event.fire(minorGCEvent);
 		//EventPublisher.instance().publishEvent(minorGCEvent);

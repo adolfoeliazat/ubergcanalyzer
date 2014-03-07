@@ -5,7 +5,7 @@ public class CorrelationId {
 
 	public CorrelationId(final String id) { this.id = id; }
 	
-	public String getCorrelationId() {
-		return id;
+	@Override public String toString() {
+		return this.id;
 	}
 }
