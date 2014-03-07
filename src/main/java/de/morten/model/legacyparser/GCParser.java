@@ -23,44 +23,35 @@ import de.morten.model.task.TaskConsumer;
 
 public class GCParser {
 
-	private final TaskChain consumer;
+	@Inject @Any @ActiveGCParser private Instance<TaskConsumer> parser;
+
 	
-	@Inject
-	public GCParser(@Any @ActiveGCParser final Instance<TaskConsumer> parNewParser) {
-		
-		final TaskChain taskChain = new TaskChain(parNewParser);
-		this.consumer = taskChain;
-	}
-	
-	
-	
-	public Map<String, List<GCEvent>> parse(final BufferedReader reader) throws IOException
+	public void parse(final BufferedReader reader) throws IOException
 	{
-		
-		final Map<String, List<GCEvent>> eventNameToEvents = new HashMap<>();
-		final Object handler = new Object() {
-			@Subscribe public void handle(final GCEvent event) {
-				GCParser.this.add(eventNameToEvents, event);
-			}
-		};
-		EventPublisher.instance().register(handler);
-		
+		final TaskChain consumer = new TaskChain(this.parser);
+//		final Map<String, List<GCEvent>> eventNameToEvents = new HashMap<>();
+//		final Object handler = new Object() {
+//			@Subscribe public void handle(final GCEvent event) {
+//				GCParser.this.add(eventNameToEvents, event);
+//			}
+//		};
+//		EventPublisher.instance().register(handler);
+	 	
 		String line = null;
 		while((line = reader.readLine()) != null)
 		{
-			this.consumer.consume(line);
+			consumer.consume(line);
 		}
-		return eventNameToEvents;
 	}
 
-	private void add(final Map<String, List<GCEvent>> eventNameToEvents, final GCEvent event) {
-		final List<GCEvent> events = eventNameToEvents.get(event.getName());
-		if(events == null)
-		{
-			final List<GCEvent> list = new ArrayList<>();
-			eventNameToEvents.put(event.getName(), list);
-		}
-		
-		eventNameToEvents.get(event.getName()).add(event);
-	}
+//	private void add(final Map<String, List<GCEvent>> eventNameToEvents, final GCEvent event) {
+//		final List<GCEvent> events = eventNameToEvents.get(event.getName());
+//		if(events == null)
+//		{
+//			final List<GCEvent> list = new ArrayList<>();
+//			eventNameToEvents.put(event.getName(), list);
+//		}
+//		
+//		eventNameToEvents.get(event.getName()).add(event);
+//	}
 }

@@ -1,6 +1,8 @@
 package de.morten.model.parnew;
 
 import javax.annotation.RegEx;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
@@ -25,6 +27,7 @@ import de.morten.model.parser.ActiveGCParser;
 public class ParNewParser extends AbstractParser {
 
 	private final static Regex PAR_NEW = createParNewPattern();
+	@Inject Event<MinorGCEvent> event;
 	
 	@Override
 	public boolean isMultiLine() {
@@ -81,7 +84,8 @@ public class ParNewParser extends AbstractParser {
 
 		final MinorGCEvent minorGCEvent = new MinorGCEvent("ParNew", timeStats, youngGenChange, oldGenChange);
 		
-		EventPublisher.instance().publishEvent(minorGCEvent);
+		this.event.fire(minorGCEvent);
+		//EventPublisher.instance().publishEvent(minorGCEvent);
 	}
 	
 	/**

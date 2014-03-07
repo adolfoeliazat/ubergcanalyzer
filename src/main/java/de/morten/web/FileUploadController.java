@@ -24,7 +24,7 @@ import de.morten.model.legacyparser.GCParser;
 @RequestScoped
 @Named
 public class FileUploadController {
-	@Inject private AnalyseResults results;
+	//@Inject private AnalyseResults results;
 	@Inject GCParser parser;
 	
     public void upload(FileUploadEvent event) {
@@ -34,11 +34,12 @@ public class FileUploadController {
 			
 			//final GCParser parser = new GCParser();
 			
+			this.parser.parse(reader);
 			
-			final Map<String, List<GCEvent>> events = parser.parse(reader);
-			
-			final AnalyseResult result = new AnalyseResult(file.getFileName(), events);
-			this.results.add(result);
+//			final Map<String, List<GCEvent>> events = parser.parse(reader);
+//			
+//			final AnalyseResult result = new AnalyseResult(file.getFileName(), events);
+//			this.results.add(result);
 			
 			
 				FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
