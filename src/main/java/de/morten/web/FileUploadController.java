@@ -19,6 +19,7 @@ import de.morten.model.AnalyseResult;
 import de.morten.model.AnalyseResults;
 import de.morten.model.GCEvent;
 import de.morten.model.legacyparser.GCParser;
+import de.morten.model.task.CorrelationId;
 
 
 @RequestScoped
@@ -34,7 +35,7 @@ public class FileUploadController {
 			
 			//final GCParser parser = new GCParser();
 			
-			this.parser.parse(reader);
+			this.parser.parse(new CorrelationId(file.getFileName()), reader);
 			
 //			final Map<String, List<GCEvent>> events = parser.parse(reader);
 //			

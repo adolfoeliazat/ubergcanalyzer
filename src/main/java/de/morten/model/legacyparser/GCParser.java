@@ -16,6 +16,7 @@ import com.google.common.eventbus.Subscribe;
 import de.morten.infrastructure.EventPublisher;
 import de.morten.model.GCEvent;
 import de.morten.model.parser.ActiveGCParser;
+import de.morten.model.task.CorrelationId;
 import de.morten.model.task.TaskChain;
 import de.morten.model.task.TaskConsumer;
 
@@ -26,9 +27,9 @@ public class GCParser {
 	@Inject @Any @ActiveGCParser private Instance<TaskConsumer> parser;
 
 	
-	public void parse(final BufferedReader reader) throws IOException
+	public void parse(final CorrelationId correlationId, final BufferedReader reader) throws IOException
 	{
-		final TaskChain consumer = new TaskChain(this.parser);
+		final TaskChain consumer = new TaskChain(correlationId, this.parser);
 //		final Map<String, List<GCEvent>> eventNameToEvents = new HashMap<>();
 //		final Object handler = new Object() {
 //			@Subscribe public void handle(final GCEvent event) {

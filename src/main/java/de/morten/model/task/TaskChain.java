@@ -1,15 +1,14 @@
 package de.morten.model.task;
 
-import java.util.List;
 
 
 public class TaskChain {
 	private final Task root = new Task(new NullTaskConsumer());
-	public TaskChain(final Iterable<? extends TaskConsumer> list)
+	public TaskChain(final CorrelationId correlationId, final Iterable<? extends TaskConsumer> list)
 	{
 		for(final TaskConsumer t : list)
 		{
-			this.root.add(t);
+			this.root.add(new IdentifiedTaskConsumer(correlationId, t));
 		}
 	}
 	
@@ -26,6 +25,11 @@ public class TaskChain {
 
 		@Override
 		public void reset() {
+		}
+
+		@Override
+		public CorrelationId getCorrelationId() {
+			return new NullCorrelationId();
 		}
 	}
 }

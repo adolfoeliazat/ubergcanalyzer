@@ -3,6 +3,8 @@ package de.morten.model.parser;
 
 import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;
+import de.morten.model.task.CorrelationId;
+import de.morten.model.task.NullCorrelationId;
 import de.morten.model.task.TaskConsumer;
 
 public abstract class AbstractParser implements TaskConsumer {
@@ -44,6 +46,10 @@ public abstract class AbstractParser implements TaskConsumer {
 		return false;
 	}
 
+	@Override public CorrelationId getCorrelationId()
+	{
+		return new NullCorrelationId();
+	}
 	
 
 	private boolean match(String message) {
