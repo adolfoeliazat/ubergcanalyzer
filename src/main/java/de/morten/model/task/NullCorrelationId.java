@@ -1,6 +1,11 @@
 package de.morten.model.task;
 
-public class NullCorrelationId extends CorrelationId{
+/**
+ * Reprensents an non existing correlation id
+ * 
+ * @author Christian Bannes
+ */
+public class NullCorrelationId extends CorrelationId {
 
 	public NullCorrelationId() {
 		super("null");

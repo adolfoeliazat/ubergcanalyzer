@@ -2,18 +2,11 @@ package de.morten.model.legacyparser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
-import com.google.common.eventbus.Subscribe;
-
-import de.morten.infrastructure.EventPublisher;
 import de.morten.model.GCEvent;
 import de.morten.model.parser.ActiveGCParser;
 import de.morten.model.task.CorrelationId;
@@ -21,22 +14,29 @@ import de.morten.model.task.TaskChain;
 import de.morten.model.task.TaskConsumer;
 
 
-
+/**
+ * The entry point of gc parsing. It delegates to gc parsers that are
+ * annotated with {@link ActiveGCParser}.
+ * 
+ * @author Christian Bannes
+ */
 public class GCParser {
 
 	@Inject @Any @ActiveGCParser private Instance<TaskConsumer> parser;
 
-	
+	/**
+	 * Parses the lines of the given buffered reader. During the parse operation every recognised
+	 * garbace collection event (like a minor gc or full gc) will result in a fired {@link GCEvent} that
+	 * can be observed by any CDI enabled object. Every fired event is correlated with the given correlation id.
+	 * 
+	 * @param correlationId the correlation id that will be passed to every fired gc event
+	 * @param reader usually contains the content of a gc file written by the JVM.
+	 * 
+	 * @throws IOException
+	 */
 	public void parse(final CorrelationId correlationId, final BufferedReader reader) throws IOException
 	{
 		final TaskChain consumer = new TaskChain(correlationId, this.parser);
-//		final Map<String, List<GCEvent>> eventNameToEvents = new HashMap<>();
-//		final Object handler = new Object() {
-//			@Subscribe public void handle(final GCEvent event) {
-//				GCParser.this.add(eventNameToEvents, event);
-//			}
-//		};
-//		EventPublisher.instance().register(handler);
 	 	
 		String line = null;
 		while((line = reader.readLine()) != null)
@@ -44,15 +44,4 @@ public class GCParser {
 			consumer.consume(line);
 		}
 	}
-
-//	private void add(final Map<String, List<GCEvent>> eventNameToEvents, final GCEvent event) {
-//		final List<GCEvent> events = eventNameToEvents.get(event.getName());
-//		if(events == null)
-//		{
-//			final List<GCEvent> list = new ArrayList<>();
-//			eventNameToEvents.put(event.getName(), list);
-//		}
-//		
-//		eventNameToEvents.get(event.getName()).add(event);
-//	}
 }
