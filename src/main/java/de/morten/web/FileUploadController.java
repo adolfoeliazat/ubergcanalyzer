@@ -3,8 +3,6 @@ package de.morten.web;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.List;
-import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -15,9 +13,6 @@ import javax.inject.Named;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-import de.morten.model.AnalyseResult;
-import de.morten.model.AnalyseResults;
-import de.morten.model.GCEvent;
 import de.morten.model.legacyparser.GCParser;
 import de.morten.model.task.CorrelationId;
 

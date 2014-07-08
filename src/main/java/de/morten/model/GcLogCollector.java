@@ -25,7 +25,7 @@ import de.morten.model.task.CorrelationId;
  * have the same {@link CorrelationId}. This id is used to group the events together
  * to create a {@link AnalyseResult} from it. 
  * 
- * When multiple gc log files have been parsed a call to {@link #getAll()} will return multiple
+ * When multiple gc log files have been parsed a call to {@link #getAllLogAnalyseResults()} will return multiple
  * {@link AnalyseResult} objects, one for each parsed log file.
  * 
  * @author Christian Bannes
@@ -33,7 +33,7 @@ import de.morten.model.task.CorrelationId;
 @SessionScoped
 @ThreadSafe
 @Named
-public class AnalyseResults implements Serializable {
+public class GcLogCollector implements Serializable {
 	private static final long serialVersionUID = 1L;
 	final ConcurrentHashMap<CorrelationId, ConcurrentHashMap<String, List<GCEvent>>> results = new ConcurrentHashMap<>();
 	
@@ -42,7 +42,7 @@ public class AnalyseResults implements Serializable {
 	 * 
 	 * @return all parsing results from all log files.
 	 */
-	public List<AnalyseResult> getAll() {
+	public List<AnalyseResult> getAllAnalyseResults() {
 		final List<AnalyseResult> list = new ArrayList<>();
 		for(final Map.Entry<CorrelationId, ConcurrentHashMap<String, List<GCEvent>>> entry : this.results.entrySet())
 		{
@@ -62,7 +62,7 @@ public class AnalyseResults implements Serializable {
 	 * 
 	 * @param event the event to save
 	 */
-	public void handleEvent(@Observes final GCEvent event)
+	public void collectEvent(@Observes final GCEvent event)
 	{
 		Preconditions.checkNotNull(event);
 		results.putIfAbsent(event.getCorrelationId(), new ConcurrentHashMap<String, List<GCEvent>>());
