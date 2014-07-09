@@ -16,11 +16,14 @@ import org.primefaces.model.UploadedFile;
 import de.morten.model.legacyparser.GCParser;
 import de.morten.model.task.CorrelationId;
 
-
+/**
+ * Controller to upload and parse a gc log file
+ * 
+ * @author Christian Bannes
+ */
 @RequestScoped
 @Named
 public class FileUploadController {
-	//@Inject private AnalyseResults results;
 	@Inject GCParser parser;
 	
     public void upload(FileUploadEvent event) {
@@ -28,18 +31,10 @@ public class FileUploadController {
 			final UploadedFile file = event.getFile();
 			final BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputstream()));
 			
-			//final GCParser parser = new GCParser();
-			
 			this.parser.parse(new CorrelationId(file.getFileName()), reader);
 			
-//			final Map<String, List<GCEvent>> events = parser.parse(reader);
-//			
-//			final AnalyseResult result = new AnalyseResult(file.getFileName(), events);
-//			this.results.add(result);
-			
-			
-				FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-				FacesContext.getCurrentInstance().addMessage(null, msg);
+			FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
     	}
     	catch(Exception e) {
     		e.printStackTrace();

@@ -6,28 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 
-/**
- * 
- * statistics we want to show:
- *  - total number of gc
- *  - number percentage of one type to all gc	
- *  - total gc secs
- *  - total gc secs %
- *  - overhead = timegc/timeall * 100 
- *  - throughput = Throughput is the percentage of time available to the application for execution ( 1-  overhead)
- *  - avg
- *  - standard deviation
- *  - min
- *  - max
- *  - 
- * 
- * 
- * 
- */
-
 
 /**
- * Provides static methods for statistics calculation
+ * Provides methods for statistics calculation
  * 
  * @author Christian Bannes
  */
