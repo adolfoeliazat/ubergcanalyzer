@@ -31,6 +31,10 @@ public class Message {
 		this(text, new NullCorrelationId());
 	}
 	
+	public boolean correlates(final Message that) {
+		return this.correlationId.equals(that.correlationId());
+	}
+	
 	/**
 	 * Creates a message with a {@link CorrelationId}, meaning
 	 * this message should be correlated to other messages with the
@@ -64,6 +68,16 @@ public class Message {
 	 */
 	public Message createCorrelatedMessage(final String text) {
 		return new Message(text, this.correlationId);
+	}
+	
+	/**
+	 * Creates a new text with the given text added
+	 * 
+	 * @param text the text to add
+	 * @return a new message
+	 */
+	public Message addText(final String text) {
+		return new Message(this.text + text, this.correlationId);
 	}
 	
 	/**

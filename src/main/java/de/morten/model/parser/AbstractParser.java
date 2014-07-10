@@ -13,7 +13,8 @@ import de.morten.model.task.MessageConsumer;
 public abstract class AbstractParser implements MessageConsumer {
 
 	private String buffer = new String();
-	
+
+	@Override
 	public boolean consume(final @Nonnull Message message)
 	{
 		Preconditions.checkNotNull(message);
@@ -76,7 +77,6 @@ public abstract class AbstractParser implements MessageConsumer {
 		return this.buffer.length() > 0;
 	}
 
-	@Override
 	public void reset() {
 		this.buffer = new String();
 	}
