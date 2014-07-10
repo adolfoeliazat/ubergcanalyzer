@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import de.morten.model.GCEvent;
 import de.morten.model.parser.ActiveGCParser;
 import de.morten.model.task.CorrelationId;
+import de.morten.model.task.Message;
 import de.morten.model.task.TaskChain;
 import de.morten.model.task.MessageConsumer;
 
@@ -41,7 +42,7 @@ public class GCParser {
 		String line = null;
 		while((line = reader.readLine()) != null)
 		{
-			consumer.consume(line);
+			consumer.consume(new Message(line, correlationId));
 		}
 	}
 }

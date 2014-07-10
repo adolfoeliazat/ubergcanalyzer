@@ -8,19 +8,18 @@ public class TaskChain {
 	{
 		for(final MessageConsumer t : list)
 		{
-			t.registerWith(correlationId);
 			this.root.add(t);
 		}
 	}
 	
-	public boolean consume(final String message)
+	public boolean consume(final Message message)
 	{
 		return this.root.consume(message);
 	}
 	
 	public static class NullTaskConsumer implements MessageConsumer {
 		@Override
-		public boolean consume(String message) {
+		public boolean consume(final Message message) {
 			return false;
 		}
 
@@ -28,13 +27,5 @@ public class TaskChain {
 		public void reset() {
 		}
 
-		@Override
-		public CorrelationId getCorrelationId() {
-			return new NullCorrelationId();
-		}
-
-		@Override
-		public void registerWith(CorrelationId id) {
-		}
 	}
 }

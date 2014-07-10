@@ -4,8 +4,6 @@ import javax.annotation.Nonnull;
 
 
 public interface  MessageConsumer {
-	boolean consume(@Nonnull final String message);
+	boolean consume(@Nonnull final Message message);
 	void reset();
-	@Nonnull CorrelationId getCorrelationId();
-	void registerWith(@Nonnull CorrelationId id);
 }

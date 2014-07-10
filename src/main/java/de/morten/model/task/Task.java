@@ -44,7 +44,7 @@ class Task {
 		}
 	}
 	
-	public boolean consume(final String message) {
+	public boolean consume(final Message message) {
 		Task t = this;
 		boolean consumed = false;
 		while(t != null) {

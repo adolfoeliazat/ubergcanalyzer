@@ -17,6 +17,7 @@ import de.morten.model.MinorGCEvent;
 import de.morten.model.legacyparser.Patterns;
 import de.morten.model.parser.AbstractParser;
 import de.morten.model.parser.ActiveGCParser;
+import de.morten.model.task.Message;
 
 /**
  * 
@@ -34,13 +35,13 @@ public class ParNewParser extends AbstractParser {
 	}
 
 	@Override
-	public boolean startParsing(final String message) {
-		return message.contains("[ParNew");
+	public boolean startParsing(final Message message) {
+		return message.text().contains("[ParNew");
 	}
 	
 	@Override
-	public boolean inlineDetected(final String message) {
-		return !message.trim().endsWith("]");
+	public boolean inlineDetected(final Message message) {
+		return !message.text().trim().endsWith("]");
 	}
 
 	@Override
@@ -75,16 +76,15 @@ public class ParNewParser extends AbstractParser {
 	 * {@link EventPublisher}.
 	 */
 	@Override
-	protected void publishEventFor(final Match match) {
+	protected void publishEventFor(final Match match, final Message message) {
 		
 		final GCMemStats youngGenChange = readYoungGenChange(match);
 		final GCMemStats oldGenChange = readOldGenChange(match);
 		final GCTimeStats timeStats = readTimeStats(match);
 
-		final MinorGCEvent minorGCEvent = new MinorGCEvent("ParNew", timeStats, youngGenChange, oldGenChange, getCorrelationId());
+		final MinorGCEvent minorGCEvent = new MinorGCEvent("ParNew", timeStats, youngGenChange, oldGenChange, message.correlationId());
 		
 		this.event.fire(minorGCEvent);
-		//EventPublisher.instance().publishEvent(minorGCEvent);
 	}
 	
 	/**

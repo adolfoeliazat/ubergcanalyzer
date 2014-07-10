@@ -1,0 +1,77 @@
+package de.morten.model.task;
+
+import java.util.Objects;
+
+import javax.annotation.concurrent.Immutable;
+
+/**
+ * A message that can be consumed by a {@link MessageConsumer}.
+ * Multiple Messages can be correlated by using the same {@link CorrelationId}
+ * for those messages.
+ * 
+ * During gc log file analysis every line is represented as a message. The
+ * correlation id is used to correlate messages that are part of the same
+ * log file.
+ * 
+ * @author Christian Bannes
+ */
+@Immutable
+public class Message {
+	private final String text;
+	private final CorrelationId correlationId;
+
+	/**
+	 * Creates a message without a {@link CorrelationId}, meaning
+	 * this message should be seen in isolation and is not correlated
+	 * with other messages.
+	 * 
+	 * @param text the message text
+	 */
+	public Message(final String text) {
+		this(text, new NullCorrelationId());
+	}
+	
+	/**
+	 * Creates a message with a {@link CorrelationId}, meaning
+	 * this message should be correlated to other messages with the
+	 * same correlation is. 
+	 * 
+	 * @param text the message text
+	 */
+	public Message(final String text, final CorrelationId correlationId) {
+		Objects.nonNull(text);
+		Objects.nonNull(correlationId);
+		this.text = text;
+		this.correlationId = correlationId;
+	}
+
+	/**
+	 * Returns the message text
+	 * 
+	 * @return the message text
+	 */
+	public String text() {
+		return text;
+	}
+
+	/**
+	 * Creates a new message with the given text that is correlated 
+	 * with this message
+	 * 
+	 * @param text the text of the newly created message
+	 * 
+	 * @return a correlated message
+	 */
+	public Message createCorrelatedMessage(final String text) {
+		return new Message(text, this.correlationId);
+	}
+	
+	/**
+	 * Returns the {@link CorrelationId} 
+	 * 
+	 * @return the correlation id
+	 */
+	public CorrelationId correlationId() {
+		return correlationId;
+	}
+}
