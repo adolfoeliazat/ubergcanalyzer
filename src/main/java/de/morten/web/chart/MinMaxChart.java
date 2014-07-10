@@ -42,9 +42,9 @@ public class MinMaxChart implements  Chart {
 	   	
     	for(final Map.Entry<String, List<GCEvent>> entry : events.entrySet()) {
     		
-    		final List<Integer> durations = new ArrayList<>();
+    		final List<Long> durations = new ArrayList<>();
             for(final GCEvent event : entry.getValue()) {
-            	final int duration = (int)(event.getTimeStats().getDuration()*1000);
+            	final long duration = (long)(event.getTimeStats().getDuration()*1000);
             	durations.add(duration);
             }
             

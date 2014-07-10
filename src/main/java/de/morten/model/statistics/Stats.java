@@ -23,40 +23,18 @@ public class Stats {
 	}
 	
 	/**
-	 * Returns the median of the given collection
-	 * 
-	 * @param values the values 
-	 * @return the median
-	 */
-	public static int median(final Collection<Integer> values)
-	{
-		if(values.isEmpty()) return 0;
-		
-		final List<Integer> list = new ArrayList<Integer>(values);
-		Collections.sort(list);
-		
-		final int mid = values.size() / 2;
-		return list.get(mid);
-	}
-	
-	/**
 	 * Calculates the variance over the given values
 	 * 
 	 * @param values the values
 	 * @return the variance
 	 */
-	public static double variance(final Collection<Integer> values) {
+	public static double variance(final Collection<Long> values) {
 		final double avg = Stats.average(values);
 		
-		if(values.isEmpty()) return 0;
-		
-		double sum = 0;
-		for(final int val : values)
-		{
-			sum += Math.pow((val - avg), 2);
-			
-		}
-		return sum / values.size();
+		return values.stream()
+			.map(v -> Math.pow(v - avg, 2))
+			.mapToDouble(Double::doubleValue)
+			.sum() / values.size();
 	}
 	
 	/**
@@ -65,7 +43,7 @@ public class Stats {
 	 * @param values thee values
 	 * @return the standard deviation
 	 */
-	public static double standardDeviation(final Collection<Integer> values) {
+	public static double standardDeviation(final Collection<Long> values) {
 		return Math.sqrt(Stats.variance(values));
 	}
 	
@@ -75,16 +53,29 @@ public class Stats {
 	 * @param values the values
 	 * @return the average
 	 */
-	public static double average(final Collection<Integer> values)
+	public static double average(final Collection<Long> values)
 	{
+		return values.stream()
+			.mapToLong(Long::longValue)
+			.average()
+			.orElse(0.0);
+	}
+	
+	/**
+	 * Returns the median of the given collection
+	 * 
+	 * @param values the values 
+	 * @return the median
+	 */
+	public static long median(final Collection<Long> values)
+	{
+		
 		if(values.isEmpty()) return 0;
 		
-		int sum = 0;
-		for(final int value : values)
-		{
-			sum += value;
-		}
+		final List<Long> list = new ArrayList<Long>(values);
+		Collections.sort(list);
 		
-		return sum / values.size();
+		final int mid = values.size() / 2;
+		return list.get(mid);
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Observes;
@@ -35,7 +36,7 @@ import de.morten.model.task.CorrelationId;
 @Named
 public class GcLogCollector implements Serializable {
 	private static final long serialVersionUID = 1L;
-	final ConcurrentHashMap<CorrelationId, ConcurrentHashMap<String, List<GCEvent>>> results = new ConcurrentHashMap<>();
+	final Map<CorrelationId, Map<String, List<GCEvent>>> results = new ConcurrentHashMap<>();
 	
 	/**
 	 * Get all parsing results. The result of one log file is represented by a {@link AnalyseResult}.
@@ -43,13 +44,10 @@ public class GcLogCollector implements Serializable {
 	 * @return all parsing results from all log files.
 	 */
 	public List<AnalyseResult> getAllAnalyseResults() {
-		final List<AnalyseResult> list = new ArrayList<>();
-		for(final Map.Entry<CorrelationId, ConcurrentHashMap<String, List<GCEvent>>> entry : this.results.entrySet())
-		{
-			final AnalyseResult analyseResult = new AnalyseResult(entry.getKey().toString(), entry.getValue());
-			list.add(analyseResult);
-		}
-		return list;
+		
+		return results.entrySet().stream()
+			.map(entry -> new AnalyseResult(entry.getKey().toString(), entry.getValue()))
+			.collect(Collectors.toList());
 	}
 	
 	/**
@@ -65,9 +63,9 @@ public class GcLogCollector implements Serializable {
 	public void collectEvent(@Observes final GCEvent event)
 	{
 		Preconditions.checkNotNull(event);
-		results.putIfAbsent(event.getCorrelationId(), new ConcurrentHashMap<String, List<GCEvent>>());
+		results.putIfAbsent(event.getCorrelationId(), new ConcurrentHashMap<>());
 		
-		final ConcurrentHashMap<String, List<GCEvent>> eventNameToEvents = results.get(event.getCorrelationId());
+		final Map<String, List<GCEvent>> eventNameToEvents = results.get(event.getCorrelationId());
 		eventNameToEvents.putIfAbsent(event.getName(), Collections.synchronizedList(new ArrayList<GCEvent>()));
 		eventNameToEvents.get(event.getName()).add(event);
 	}

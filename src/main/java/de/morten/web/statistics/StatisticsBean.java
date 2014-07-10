@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -35,22 +35,22 @@ public class StatisticsBean {
 	public List<Statistics> getStats() {
 		final AnalyseResult result = checkedResult.get();
 		
-		final List<Statistics> stats = new ArrayList<>();
 		final List<GCEvent> allEvents = flatten(result.getEvents().values());
-		for(final Map.Entry<String, List<GCEvent>> entry : result.getEvents().entrySet()) {
-			final Statistics s = new Statistics(entry.getKey(), entry.getValue(), allEvents);
-			stats.add(s);
-		}
+		
+		final List<Statistics> stats = result.getEvents().entrySet().stream()
+				.map(entry -> new Statistics(entry.getKey(), entry.getValue(), allEvents))
+				.collect(Collectors.toList());
+		
 		return stats;
 	}
 	
 	
 	
 	private List<GCEvent> flatten(Collection<List<GCEvent>> values) {
+		
 		final List<GCEvent> flatList = new ArrayList<>();
-		for(final Collection<GCEvent> events : values) {
-			flatList.addAll(events);
-		}
+		values.forEach(flatList::addAll);
+		
 		return flatList;
 	}
 
@@ -65,8 +65,8 @@ public class StatisticsBean {
 		private final String name;
 		private final List<GCEvent> events;
 		private final List<GCEvent> allEvents;
-		private final List<Integer> secs = new ArrayList<>();
-		private final int totalSecs;
+		private final List<Long> secs;
+		private final long totalSecs;
 		private final double totalElapsedTimeSinceMeasurement;
 		
 		
@@ -80,10 +80,9 @@ public class StatisticsBean {
 			this.events = events;
 			this.allEvents = allEvents;
 			
-			for(final GCEvent event : this.events)
-			{
-				this.secs.add((int)event.getTimeStats().getDuration());
-			}
+			this.secs = this.events.stream()
+							.map(e -> Math.round(e.getTimeStats().getDuration()))
+							.collect(Collectors.toList());
 			
 			this.totalSecs = sumSecs(events);
 			this.totalElapsedTimeSinceMeasurement = calcTotalTime(allEvents);
@@ -91,16 +90,11 @@ public class StatisticsBean {
 
 		private double calcTotalTime(List<GCEvent> events) {
 			
-			final List<Double> times = new ArrayList<>();
-			for(final GCEvent event : events)
-			{
-				times.add(event.getTimeStats().getElappsedTime());
-			}
+			final List<Double> times = events.stream()
+					.map(event -> event.getTimeStats().getElappsedTime())
+					.collect(Collectors.toList());
 			
-			final double min = Collections.min(times);
-			final double max = Collections.max(times);
-			
-			return max-min;
+			return  Collections.max(times)-Collections.min(times);
 		}
 
 		/**
@@ -135,19 +129,17 @@ public class StatisticsBean {
 		 * 
 		 * @return the total secs of this gc event
 		 */
-		public int getTotalGCSecs() {
+		public long getTotalGCSecs() {
 			return this.totalSecs;
 			
 		}
 		
-		private int sumSecs(final List<GCEvent> vals)
+		private long sumSecs(final List<GCEvent> vals)
 		{
-			int total = 0;
-			for(final GCEvent val : vals) {
-				total += val.getTimeStats().getDuration();
-			}
-			
-			return total;
+			return vals.stream()
+				.map(v -> Math.round(v.getTimeStats().getDuration()))
+				.mapToLong(Long::longValue)
+				.sum();
 		}
 		
 		/** 
@@ -187,7 +179,7 @@ public class StatisticsBean {
 		 * Returns the time in secs of the min gc event
 		 * @return min in secs
 		 */
-		public int getMin() {
+		public long getMin() {
 			return this.secs.isEmpty()? 0 : Collections.min(this.secs);
 		}
 		
@@ -195,7 +187,7 @@ public class StatisticsBean {
 		 * Returns the time in secs of the max gc event
 		 * @return max in secs
 		 */
-		public int getMax() {
+		public long getMax() {
 			return this.secs.isEmpty()? 0 : Collections.max(this.secs);
 		}
 		
@@ -213,7 +205,7 @@ public class StatisticsBean {
 		 * 
 		 * @return median in secs
 		 */
-		public int getMedian() {
+		public long getMedian() {
 			return this.secs.isEmpty()? 0 : Stats.median(this.secs);
 		}
 		
