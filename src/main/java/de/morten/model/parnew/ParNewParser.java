@@ -11,7 +11,6 @@ import org.joda.time.format.ISODateTimeFormat;
 import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;
 import de.java.regexdsl.model.RegexBuilder;
-import de.morten.infrastructure.EventPublisher;
 import de.morten.model.GCMemStats;
 import de.morten.model.GCTimeStats;
 import de.morten.model.MinorGCEvent;
