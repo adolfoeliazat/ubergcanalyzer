@@ -83,7 +83,7 @@
 
 
  <security-role>
- 	<role-name>admin</role-name>
+ 	<role-name>ubergc</role-name>
  </security-role>
  
  <security-constraint>
@@ -92,7 +92,7 @@
  		<url-pattern>/dashboard.jsf</url-pattern>
  	</web-resource-collection>
  	<auth-constraint>
- 		<role-name>admin</role-name>
+ 		<role-name>ubergc</role-name>
  	</auth-constraint>
  </security-constraint>
  
