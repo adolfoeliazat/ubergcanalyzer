@@ -2,16 +2,16 @@ package de.morten.model.task;
 
 class Task {
 
-	private TaskConsumer data;
+	private MessageConsumer data;
 	private Task next;
 	
-	public Task(TaskConsumer data)
+	public Task(MessageConsumer data)
 	{
 		this.data = data;
 		this.next = null;
 	}
 	
-	public void add(TaskConsumer data)
+	public void add(MessageConsumer data)
 	{
 		final Task task = new Task(data);
 		final Task lastNode = getLastNode();

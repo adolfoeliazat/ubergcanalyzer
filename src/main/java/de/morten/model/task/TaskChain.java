@@ -4,11 +4,11 @@ package de.morten.model.task;
 
 public class TaskChain {
 	private final Task root = new Task(new NullTaskConsumer());
-	public TaskChain(final CorrelationId correlationId, final Iterable<? extends TaskConsumer> list)
+	public TaskChain(final CorrelationId correlationId, final Iterable<? extends MessageConsumer> list)
 	{
-		for(final TaskConsumer t : list)
+		for(final MessageConsumer t : list)
 		{
-			t.setCorrelationId(correlationId);
+			t.registerWith(correlationId);
 			this.root.add(t);
 		}
 	}
@@ -18,7 +18,7 @@ public class TaskChain {
 		return this.root.consume(message);
 	}
 	
-	public static class NullTaskConsumer implements TaskConsumer {
+	public static class NullTaskConsumer implements MessageConsumer {
 		@Override
 		public boolean consume(String message) {
 			return false;
@@ -34,7 +34,7 @@ public class TaskChain {
 		}
 
 		@Override
-		public void setCorrelationId(CorrelationId id) {
+		public void registerWith(CorrelationId id) {
 		}
 	}
 }

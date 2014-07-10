@@ -11,7 +11,7 @@ import de.morten.model.GCEvent;
 import de.morten.model.parser.ActiveGCParser;
 import de.morten.model.task.CorrelationId;
 import de.morten.model.task.TaskChain;
-import de.morten.model.task.TaskConsumer;
+import de.morten.model.task.MessageConsumer;
 
 
 /**
@@ -22,7 +22,7 @@ import de.morten.model.task.TaskConsumer;
  */
 public class GCParser {
 
-	@Inject @Any @ActiveGCParser private Instance<TaskConsumer> parser;
+	@Inject @Any @ActiveGCParser private Instance<MessageConsumer> parser;
 
 	/**
 	 * Parses the lines of the given buffered reader. During the parse operation every recognised

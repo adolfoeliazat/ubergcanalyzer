@@ -9,9 +9,9 @@ import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;
 import de.morten.model.task.CorrelationId;
 import de.morten.model.task.NullCorrelationId;
-import de.morten.model.task.TaskConsumer;
+import de.morten.model.task.MessageConsumer;
 
-public abstract class AbstractParser implements TaskConsumer {
+public abstract class AbstractParser implements MessageConsumer {
 
 	private String buffer = new String();
 	private CorrelationId correlationId = new NullCorrelationId();
@@ -79,7 +79,7 @@ public abstract class AbstractParser implements TaskConsumer {
 	
 	
 
-	public void setCorrelationId(final CorrelationId correlationId) {
+	public void registerWith(final CorrelationId correlationId) {
 		Preconditions.checkNotNull(correlationId);
 		this.correlationId  = correlationId;
 	}
