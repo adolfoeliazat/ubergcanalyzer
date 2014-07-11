@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -13,8 +14,6 @@ import javax.enterprise.event.Observes;
 import javax.inject.Named;
 
 import org.apache.http.annotation.ThreadSafe;
-
-import com.google.common.base.Preconditions;
 
 import de.morten.model.task.CorrelationId;
 
@@ -62,7 +61,7 @@ public class GcLogCollector implements Serializable {
 	 */
 	public void collectEvent(@Observes final GCEvent event)
 	{
-		Preconditions.checkNotNull(event);
+		Objects.requireNonNull(event);
 		results.putIfAbsent(event.getCorrelationId(), new ConcurrentHashMap<>());
 		
 		final Map<String, List<GCEvent>> eventNameToEvents = results.get(event.getCorrelationId());

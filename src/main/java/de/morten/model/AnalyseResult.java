@@ -5,11 +5,10 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.http.annotation.ThreadSafe;
 import org.joda.time.DateTime;
-
-import com.google.common.base.Preconditions;
 
 
 /**
@@ -30,8 +29,8 @@ public class AnalyseResult implements Serializable {
 	 */
 	public AnalyseResult(final String nameSuffix, final Map<String, List<GCEvent>> events) {
 		final DateTime current  = new DateTime();
-		Preconditions.checkNotNull(nameSuffix);
-		Preconditions.checkNotNull(events);
+		Objects.requireNonNull(nameSuffix);
+		Objects.requireNonNull(events);
 		
 		this.events = Collections.unmodifiableMap(events);
 		this.name = current.toString() + "-" + nameSuffix;

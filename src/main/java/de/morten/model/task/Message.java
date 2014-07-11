@@ -43,10 +43,8 @@ public class Message {
 	 * @param text the message text
 	 */
 	public Message(final String text, final CorrelationId correlationId) {
-		Objects.nonNull(text);
-		Objects.nonNull(correlationId);
-		this.text = text;
-		this.correlationId = correlationId;
+		this.text = Objects.requireNonNull(text);
+		this.correlationId = Objects.requireNonNull(correlationId);
 	}
 
 	/**

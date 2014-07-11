@@ -1,6 +1,8 @@
 package de.morten.model.parser;
 
 
+import java.util.Objects;
+
 import javax.annotation.Nonnull;
 
 import com.google.common.base.Preconditions;
@@ -23,8 +25,7 @@ public abstract class AbstractParser implements MessageConsumer {
 	@Override
 	public boolean consume(final @Nonnull Message message)
 	{
-		Preconditions.checkNotNull(message);
-		
+		Objects.requireNonNull(message);
 		return isMultiLine()? consumeMultiLine(message) : consumeSingleLine(message);
 	}
 	

@@ -17,7 +17,9 @@ public class CorrelationId {
 	private final String id;
 
 	
-	public CorrelationId(final String id) { this.id = id; }
+	public CorrelationId(final String id) { 
+		this.id = Objects.requireNonNull(id); 
+	}
 	
 	@Override public String toString() {
 		return this.id;

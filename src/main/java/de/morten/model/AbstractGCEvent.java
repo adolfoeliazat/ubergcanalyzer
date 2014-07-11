@@ -1,5 +1,7 @@
 package de.morten.model;
 
+import java.util.Objects;
+
 import de.morten.model.task.CorrelationId;
 
 public abstract class  AbstractGCEvent implements GCEvent{
@@ -11,9 +13,9 @@ public abstract class  AbstractGCEvent implements GCEvent{
 	private CorrelationId correlationId;
 
 	public AbstractGCEvent(final String name, final GCTimeStats timeStats, final CorrelationId correlationId) {
-		this.name = name;
-		this.timeStats = timeStats;
-		this.correlationId = correlationId;
+		this.name = Objects.requireNonNull(name);
+		this.timeStats = Objects.requireNonNull(timeStats);
+		this.correlationId = Objects.requireNonNull(correlationId);
 	}
 	
 	public GCTimeStats getTimeStats() {
