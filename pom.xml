@@ -133,13 +133,12 @@
 			<version>2.2</version>
 		</dependency>
 		
-		<!-- not needed with java8
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>17.0</version>
 		</dependency>
-		-->
+		
 
 		<!-- testing -->
          <dependency>
