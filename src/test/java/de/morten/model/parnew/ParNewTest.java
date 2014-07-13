@@ -9,7 +9,6 @@
 //
 //import com.google.common.eventbus.Subscribe;
 //
-//import de.morten.infrastructure.EventPublisher;
 //import de.morten.model.GCEvent;
 //
 //public class ParNewTest {

@@ -28,7 +28,7 @@ public class ParNewParser extends AbstractParser {
 
 	private final static Regex PAR_NEW = createParNewPattern();
 	@Inject Event<MinorGCEvent> event;
-	
+    
 	@Override
 	public boolean isMultiLine() {
 		return true;
