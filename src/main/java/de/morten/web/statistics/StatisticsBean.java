@@ -10,8 +10,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import de.morten.model.AnalyseResult;
-import de.morten.model.GCEvent;
+import de.morten.model.gc.AnalyseResult;
+import de.morten.model.gc.GCEvent;
 import de.morten.model.statistics.Stats;
 import de.morten.web.CheckedResult;
 

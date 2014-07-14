@@ -6,7 +6,7 @@ import java.util.List;
 import javax.enterprise.event.Observes;
 import javax.inject.Singleton;
 
-import de.morten.model.GCEvent;
+import de.morten.model.gc.GCEvent;
 
 /**
  * Only for junit testing

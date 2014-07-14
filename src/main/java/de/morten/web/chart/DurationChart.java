@@ -12,7 +12,7 @@ import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
-import de.morten.model.GCEvent;
+import de.morten.model.gc.GCEvent;
 import de.morten.web.CheckedResult;
 
 

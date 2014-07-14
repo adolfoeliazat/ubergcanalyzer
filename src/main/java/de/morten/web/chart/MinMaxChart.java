@@ -14,7 +14,7 @@ import org.primefaces.model.chart.ChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
 
-import de.morten.model.GCEvent;
+import de.morten.model.gc.GCEvent;
 import de.morten.model.statistics.Stats;
 import de.morten.web.CheckedResult;
 

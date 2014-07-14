@@ -7,8 +7,8 @@ import java.util.TreeMap;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
-import de.morten.model.AnalyseResult;
-import de.morten.model.GCEvent;
+import de.morten.model.gc.AnalyseResult;
+import de.morten.model.gc.GCEvent;
 
 public class ChartFactory 
 {

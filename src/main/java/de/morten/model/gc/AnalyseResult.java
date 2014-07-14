@@ -1,5 +1,5 @@
 
-package de.morten.model;
+package de.morten.model.gc;
 
 import java.io.Serializable;
 import java.util.Collections;

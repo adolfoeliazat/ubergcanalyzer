@@ -14,7 +14,7 @@ import org.primefaces.model.DashboardModel;
 import org.primefaces.model.DefaultDashboardColumn;
 import org.primefaces.model.DefaultDashboardModel;
 
-import de.morten.model.AnalyseResult;
+import de.morten.model.gc.AnalyseResult;
 
 @Named("myDashboard")
 @SessionScoped

@@ -1,4 +1,4 @@
-package de.morten.model;
+package de.morten.model.gc;
 
 /**
  * Represents one minor or major garbage collection event of the JVM.

@@ -9,8 +9,8 @@ import javax.inject.Named;
 
 import com.google.common.collect.Maps;
 
-import de.morten.model.AnalyseResult;
-import de.morten.model.GCEvent;
+import de.morten.model.gc.AnalyseResult;
+import de.morten.model.gc.GCEvent;
 
 @Named
 @SessionScoped

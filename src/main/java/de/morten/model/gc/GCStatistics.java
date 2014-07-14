@@ -1,4 +1,4 @@
-package de.morten.model;
+package de.morten.model.gc;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package de.morten.model;
+package de.morten.model.gc;
 
 /**
  * Statistics of a generational memory (younggen, oldgen or permgen) before and after a gc.

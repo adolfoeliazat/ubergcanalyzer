@@ -1,4 +1,4 @@
-package de.morten.model;
+package de.morten.model.gc;
 
 import de.morten.model.message.CorrelationId;
 

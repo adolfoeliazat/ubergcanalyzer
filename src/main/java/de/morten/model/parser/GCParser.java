@@ -7,7 +7,7 @@ import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
-import de.morten.model.GCEvent;
+import de.morten.model.gc.GCEvent;
 import de.morten.model.message.CorrelationId;
 import de.morten.model.message.Message;
 import de.morten.model.message.MessageConsumer;
