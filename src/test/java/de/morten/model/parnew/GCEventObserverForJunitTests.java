@@ -1,15 +1,15 @@
-package de.morten.integration;
+package de.morten.model.parnew;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Singleton;
 
 import de.morten.model.GCEvent;
 
 /**
+ * Only for junit testing
  * 
  * @author Christian Bannes
  */

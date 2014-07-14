@@ -1,4 +1,4 @@
-package de.morten.integration;
+package de.morten.model.parnew;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -26,7 +26,7 @@ import de.morten.model.parser.ActiveGCParser;
 import de.morten.model.task.Message;
 
 @RunWith(Arquillian.class)
-public class DeploymentTest {
+public class ParNewParserTest {
 
 	@Deployment
 	public static JavaArchive createDeployment() {
