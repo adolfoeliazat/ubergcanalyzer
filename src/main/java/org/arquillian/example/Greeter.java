@@ -18,13 +18,16 @@
 package org.arquillian.example;
 
 import java.io.PrintStream;
+
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
 /**
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
  */
 public class Greeter {
-
+	@Inject Event<PhraseBuilder> event;
+	
 	@Inject
     private PhraseBuilder phraseBuilder;
 
@@ -38,6 +41,7 @@ public class Greeter {
     }
 
     public String createGreeting(String name) {
+    	System.out.println("is null: " + (this.event == null));
         return phraseBuilder.buildPhrase("hello", name);
     }
 }
