@@ -38,7 +38,7 @@
 	        <dependency>
 			  <groupId>org.jboss.arquillian</groupId>
 			  <artifactId>arquillian-bom</artifactId>
-			  <version>1.1.5.Final</version>
+			  <version>1.0.3.Final</version>
 			  <type>pom</type>
 			  <scope>import</scope>
 			</dependency>
@@ -63,6 +63,43 @@
 		  <scope>test</scope>
 		</dependency>
 		
+		<dependency>
+		    <groupId>org.jboss.arquillian.container</groupId>
+		    <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+		    <version>1.0.0.CR3</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.jboss.weld</groupId>
+		    <artifactId>weld-core</artifactId>
+		    <version>2.2.2.Final</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-simple</artifactId>
+		    <version>1.6.4</version>
+		    <scope>test</scope>
+		</dependency>
+
+		<!-- 
+		<dependency>
+		  <groupId>org.wildfly</groupId>
+		  <artifactId>wildfly-arquillian-container-remote</artifactId>
+		  <version>8.1.0.Final</version>
+		  <scope>test</scope>
+		</dependency>
+		
+		
+		 <dependency>
+            <groupId>org.jboss.arquillian.protocol</groupId>
+            <artifactId>arquillian-protocol-servlet</artifactId>
+            <scope>test</scope>
+        </dependency>
+        -->
+        
+		
+		<!--  embedded wildfly, needs an installation anyway 
 		
 		<dependency>
 		  <groupId>org.wildfly</groupId>
@@ -70,6 +107,7 @@
 		  <version>8.1.0.Final</version>
 		  <scope>test</scope>
 		</dependency>
+		-->
 		
 
 		<!-- 
@@ -232,16 +270,14 @@
 		
 		<!-- arquillian container -->
 		
-		<!-- 
+		 
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>el-api</artifactId>
 			<version>2.2.1-b04</version>
 			<scope>test</scope>
 		</dependency>
-	-->
 
-		<!-- 
 		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
@@ -254,7 +290,6 @@
 			<artifactId>validation-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		-->
 
         <!-- 
 		<dependency>
@@ -288,13 +323,13 @@
 		
 
 		<!-- needed for arquillian to startup wildfly -->
-			<!-- 
+			 
         <dependency>
 			<groupId>org.jboss.logmanager</groupId>
 			<artifactId>jboss-logmanager</artifactId>
 			<version>1.5.2.Final</version>
 		</dependency>
-		     -->   
+		       
 
     </dependencies>
     

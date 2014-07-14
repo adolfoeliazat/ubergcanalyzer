@@ -16,6 +16,7 @@ import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 //import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 //import org.jboss.shrinkwrap.resolver.impl.maven.coordinate.MavenDependencyImpl;
@@ -31,20 +32,23 @@ import de.morten.model.task.Message;
 public class DeploymentTest {
 
 	@Deployment
-	public static WebArchive createDeployment() {
+	public static JavaArchive createDeployment() {
 		
 		//File[] files = Maven.configureResolver().loadPomFromFile("pom.xml")
         //        .importRuntimeDependencies().resolve().withTransitivity().asFile();
 		
-		return ShrinkWrap.create(WebArchive.class, "sample.war")
-			//	.addAsLibraries(files)
-				.setWebXML(new File("src/main/webapp/WEB-INF/web.xml"))
-				.addClass(ParNewParser.class)
-			.addClass(MinorGCEvent.class)
-			.addAsWebInfResource(new StringAsset("<faces-config version=\"2.0\"/>"), "faces-config.xml")             
-			.addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+//		return ShrinkWrap.create(WebArchive.class, "sample.war")
+//			//	.addAsLibraries(files)
+//				.setWebXML(new File("src/main/webapp/WEB-INF/web.xml"))
+//				.addClass(ParNewParser.class)
+//			.addClass(MinorGCEvent.class)
+//			.addAsWebInfResource(new StringAsset("<faces-config version=\"2.0\"/>"), "faces-config.xml")             
+//			.addAsWebInfResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
 			
 			
+	      return ShrinkWrap.create(JavaArchive.class, "sample.jar")
+	              .addClasses(ParNewParser.class)
+	              .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
 	
 	@Inject @ActiveGCParser ParNewParser parser;
