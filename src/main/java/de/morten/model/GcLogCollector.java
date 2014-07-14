@@ -15,7 +15,7 @@ import javax.inject.Named;
 
 import org.apache.http.annotation.ThreadSafe;
 
-import de.morten.model.task.CorrelationId;
+import de.morten.model.message.CorrelationId;
 
 
 

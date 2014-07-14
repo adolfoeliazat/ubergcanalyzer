@@ -1,4 +1,4 @@
-package de.morten.model.legacyparser;
+package de.morten.model.parser;
 
 import de.java.regexdsl.model.Regex;
 import de.java.regexdsl.model.RegexBuilder;

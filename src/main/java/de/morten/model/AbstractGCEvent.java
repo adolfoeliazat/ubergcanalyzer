@@ -2,7 +2,7 @@ package de.morten.model;
 
 import java.util.Objects;
 
-import de.morten.model.task.CorrelationId;
+import de.morten.model.message.CorrelationId;
 
 public abstract class  AbstractGCEvent implements GCEvent{
 

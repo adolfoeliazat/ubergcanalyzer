@@ -1,6 +1,6 @@
 package de.morten.model;
 
-import de.morten.model.task.CorrelationId;
+import de.morten.model.message.CorrelationId;
 
 
 /**

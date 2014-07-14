@@ -13,8 +13,8 @@ import javax.inject.Named;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-import de.morten.model.legacyparser.GCParser;
-import de.morten.model.task.CorrelationId;
+import de.morten.model.message.CorrelationId;
+import de.morten.model.parser.GCParser;
 
 /**
  * Controller to upload and parse a gc log file

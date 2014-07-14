@@ -1,10 +1,10 @@
-package de.morten.model.task;
+package de.morten.model.message;
 
 
 
-public class TaskChain {
-	private final Task root = new Task(new NullTaskConsumer());
-	public TaskChain(final CorrelationId correlationId, final Iterable<? extends MessageConsumer> list)
+public class MessageConsumerChain {
+	private final MessageConsumerNode root = new MessageConsumerNode(new NullTaskConsumer());
+	public MessageConsumerChain(final CorrelationId correlationId, final Iterable<? extends MessageConsumer> list)
 	{
 		for(final MessageConsumer t : list)
 		{

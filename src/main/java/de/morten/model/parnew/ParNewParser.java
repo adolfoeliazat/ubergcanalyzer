@@ -14,10 +14,10 @@ import de.java.regexdsl.model.RegexBuilder;
 import de.morten.model.GCMemStats;
 import de.morten.model.GCTimeStats;
 import de.morten.model.MinorGCEvent;
-import de.morten.model.legacyparser.Patterns;
+import de.morten.model.message.Message;
 import de.morten.model.parser.AbstractParser;
 import de.morten.model.parser.ActiveGCParser;
-import de.morten.model.task.Message;
+import de.morten.model.parser.Patterns;
 
 /**
  * 

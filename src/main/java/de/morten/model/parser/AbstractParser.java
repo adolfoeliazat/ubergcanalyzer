@@ -9,8 +9,8 @@ import com.google.common.base.Preconditions;
 
 import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;
-import de.morten.model.task.Message;
-import de.morten.model.task.MessageConsumer;
+import de.morten.model.message.Message;
+import de.morten.model.message.MessageConsumer;
 
 /**
  * Convenient implementation of a parser. A gc parser should always

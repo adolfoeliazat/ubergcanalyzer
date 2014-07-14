@@ -1,4 +1,4 @@
-package de.morten.model.legacyparser;
+package de.morten.model.parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,11 +8,10 @@ import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 import de.morten.model.GCEvent;
-import de.morten.model.parser.ActiveGCParser;
-import de.morten.model.task.CorrelationId;
-import de.morten.model.task.Message;
-import de.morten.model.task.TaskChain;
-import de.morten.model.task.MessageConsumer;
+import de.morten.model.message.CorrelationId;
+import de.morten.model.message.Message;
+import de.morten.model.message.MessageConsumer;
+import de.morten.model.message.MessageConsumerChain;
 
 
 /**
@@ -37,7 +36,7 @@ public class GCParser {
 	 */
 	public void parse(final CorrelationId correlationId, final BufferedReader reader) throws IOException
 	{
-		final TaskChain consumer = new TaskChain(correlationId, this.parser);
+		final MessageConsumerChain consumer = new MessageConsumerChain(correlationId, this.parser);
 	 	
 		String line = null;
 		while((line = reader.readLine()) != null)

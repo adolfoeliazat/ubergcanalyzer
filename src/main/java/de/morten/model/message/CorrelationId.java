@@ -1,4 +1,4 @@
-package de.morten.model.task;
+package de.morten.model.message;
 
 import java.util.Objects;
 

@@ -1,11 +1,11 @@
-package de.morten.model.task;
+package de.morten.model.message;
 
-class Task {
+class MessageConsumerNode {
 
 	private MessageConsumer data;
-	private Task next;
+	private MessageConsumerNode next;
 	
-	public Task(MessageConsumer data)
+	public MessageConsumerNode(MessageConsumer data)
 	{
 		this.data = data;
 		this.next = null;
@@ -13,13 +13,13 @@ class Task {
 	
 	public void add(MessageConsumer data)
 	{
-		final Task task = new Task(data);
-		final Task lastNode = getLastNode();
+		final MessageConsumerNode task = new MessageConsumerNode(data);
+		final MessageConsumerNode lastNode = getLastNode();
 		lastNode.next = task;
 	}
 	
-	private Task getLastNode() {
-		Task t = this;
+	private MessageConsumerNode getLastNode() {
+		MessageConsumerNode t = this;
 		
 		while(t.next != null)
 			t = t.next;
@@ -31,13 +31,13 @@ class Task {
 		if(next == null)
 			return;
 		
-		final Task lastNode = getLastNode();
+		final MessageConsumerNode lastNode = getLastNode();
 		lastNode.next = this;
 	}
 	
 	public void resetTail()
 	{
-		Task t = this.next;
+		MessageConsumerNode t = this.next;
 		while(t != null) {
 			t.data.reset();
 			t = t.next;
@@ -45,7 +45,7 @@ class Task {
 	}
 	
 	public boolean consume(final Message message) {
-		Task t = this;
+		MessageConsumerNode t = this;
 		boolean consumed = false;
 		while(t != null) {
 			consumed = t.data.consume(message);

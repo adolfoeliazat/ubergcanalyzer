@@ -21,9 +21,9 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import de.morten.model.message.Message;
 import de.morten.model.parnew.ParNewParser;
 import de.morten.model.parser.ActiveGCParser;
-import de.morten.model.task.Message;
 
 @RunWith(Arquillian.class)
 public class ParNewParserTest {
