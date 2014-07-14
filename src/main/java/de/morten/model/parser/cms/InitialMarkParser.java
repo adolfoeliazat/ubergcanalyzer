@@ -1,4 +1,4 @@
-package de.morten.model.cms;
+package de.morten.model.parser.cms;
 
 import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;

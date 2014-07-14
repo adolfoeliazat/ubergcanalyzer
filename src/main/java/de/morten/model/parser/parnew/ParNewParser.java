@@ -1,4 +1,4 @@
-package de.morten.model.parnew;
+package de.morten.model.parser.parnew;
 
 import javax.annotation.RegEx;
 import javax.enterprise.event.Event;
