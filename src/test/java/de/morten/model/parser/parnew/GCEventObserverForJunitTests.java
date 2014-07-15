@@ -1,4 +1,4 @@
-package de.morten.model.parnew;
+package de.morten.model.parser.parnew;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import de.morten.model.gc.GCEvent;
  */
 @Singleton
 public class GCEventObserverForJunitTests {
-	List<GCEvent> events = new ArrayList<>();
+	private List<GCEvent> events = new ArrayList<>();
 	
 	public void observeEvemts(@Observes final GCEvent event) {
 		this.events.add(event);
@@ -23,6 +23,10 @@ public class GCEventObserverForJunitTests {
 	
 	public void clear() {
 		this.events.clear();
+	}
+	
+	public List<GCEvent> events() {
+		return this.events;
 	}
 	
 	

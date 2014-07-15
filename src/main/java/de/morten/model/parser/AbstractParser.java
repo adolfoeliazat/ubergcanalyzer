@@ -5,8 +5,6 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-import com.google.common.base.Preconditions;
-
 import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;
 import de.morten.model.message.Message;

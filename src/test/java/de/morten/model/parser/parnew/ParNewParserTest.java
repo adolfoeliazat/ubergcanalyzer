@@ -1,4 +1,4 @@
-package de.morten.model.parnew;
+package de.morten.model.parser.parnew;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -61,7 +61,7 @@ public class ParNewParserTest {
 			parser.consume(new Message(line));
 		}
 		
-		assertThat(observer.events.size(), is(Integer.valueOf(1)));
+		assertThat(observer.events().size(), is(Integer.valueOf(1)));
 	}
 	
 	@Test
@@ -75,7 +75,7 @@ public class ParNewParserTest {
 			parser.consume(new Message(line));
 		}
 		
-		assertThat(observer.events.size(), is(Integer.valueOf(1)));
+		assertThat(observer.events().size(), is(Integer.valueOf(1)));
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ public class ParNewParserTest {
 			parser.consume(new Message(line));
 		}
 		
-		assertThat(observer.events.size(), is(Integer.valueOf(1)));
+		assertThat(observer.events().size(), is(Integer.valueOf(1)));
 	}
 	
 	
@@ -116,7 +116,7 @@ public class ParNewParserTest {
 			parser.consume(new Message(line));
 		}
 		
-		assertThat(observer.events.size(), is(Integer.valueOf(0)));
+		assertThat(observer.events().size(), is(Integer.valueOf(0)));
 	}
 	
 	
