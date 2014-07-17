@@ -18,25 +18,21 @@ public class Patterns {
 				.build();
 	}
 	
-	public static Regex memstat() {
+	public static Regex memStatOccupancyBeforeAfterAndTotal() {
 		return RegexBuilder.create()
 				.pattern("\\b")
 				.number("#occupancyPriorGc").constant("K->").number("#occupancyAfterGc").pattern("K\\(").number("#totalSize").constant("K)")
 				.build();
 	}
 	
-	public static Regex parNew() {
+	/**
+	 * Example: 3166449K(6291456K)
+	 * @return
+	 */
+	public static Regex memStatOccupancyBeforeAndTotal() {
 		return RegexBuilder.create()
-				.optional("#timestamp")
-					.regex("#date", date()) 
-					.constant("T")
-					.regex("#time", time())
-					.constant("+0100: ")
-				.end()
-				.number("#timeSinceStartup").any()
-				.regex("#eden", memstat()).any()
-				.regex("#heap", memstat()).any()
-				.pattern("[^\\d\\.]").number("#duration").constant(" secs]")
+				.pattern("\\b")
+				.number("#occupancyPriorGc").constant("K(").number("#occupancyAfterGc").constant("K)")
 				.build();
 	}
 	

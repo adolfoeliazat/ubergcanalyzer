@@ -1,4 +1,4 @@
-package de.morten.model.parser.parnew;
+package de.morten.model.parser;
 
 import java.util.ArrayList;
 import java.util.List;

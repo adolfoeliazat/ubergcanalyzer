@@ -1,12 +1,12 @@
 package de.morten.model.parser.cms;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
 
 import de.morten.model.message.Message;
 import de.morten.model.parser.ActiveGCParser;
-import de.morten.model.parser.parnew.GCEventObserverForJunitTests;
+import de.morten.model.parser.GCEventObserverForJunitTests;
 
 
 @RunWith(Arquillian.class)
@@ -47,6 +47,7 @@ public class InitialMarkParserTest {
 		
 		assertThat(this.observer.events().size(), is(Integer.valueOf(1)));
 	}
+	
 	
 	@Test
 	public void multiLineShouldMatch() {

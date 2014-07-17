@@ -23,6 +23,7 @@ import org.junit.runner.RunWith;
 
 import de.morten.model.message.Message;
 import de.morten.model.parser.ActiveGCParser;
+import de.morten.model.parser.GCEventObserverForJunitTests;
 import de.morten.model.parser.parnew.ParNewParser;
 
 @RunWith(Arquillian.class)
