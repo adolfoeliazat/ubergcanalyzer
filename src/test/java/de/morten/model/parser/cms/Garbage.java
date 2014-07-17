@@ -1,7 +1,10 @@
 package de.morten.model.parser.cms;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
+import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;
 import de.java.regexdsl.model.RegexBuilder;
 import de.morten.model.parser.Patterns;
@@ -36,5 +39,27 @@ public class Garbage {
 		.build();
 		
 		System.out.println(regex.match(i2).empty());
+	}
+	
+	@Test
+	public void testConcurrentPhase() {
+		
+		final String line = "2012-11-14T21:01:38.704+0100: 1257.660: [CMS-concurrent-preclean: 0.021/0.021 secs] [Times: user=0.02 sys=0.00, real=0.02 secs]";
+		
+		final Regex regex = RegexBuilder.create()
+		.optional("#timestamp")
+			.regex("#date", Patterns.date()) 
+			.constant("T")
+			.regex("#time", Patterns.time())
+			.constant("+0100: ")
+		.end()
+		.number("#timeSinceStartup").any()
+		.number("#elapsedTime").constant("/").number("#wallClockTime").constant(" secs]").any()
+		.pattern("[^\\d\\.]").number("#duration").pattern("\\s+").constant("secs]").any()
+		.build();
+		
+		final Match match = regex.match(line);
+		
+		Assert.assertEquals("match shoudl not be empty", false, match.empty());
 	}
 }
