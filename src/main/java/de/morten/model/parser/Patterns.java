@@ -26,6 +26,46 @@ public class Patterns {
 	}
 	
 	/**
+	 * Matches at end of line on the total duration of the gc. This is printed at the end of 
+	 * the last line of the gc log.
+	 * 
+	 * Example: The regex will match on "0.38 secs" when the line ends with 
+	 * 		    [Times: user=2.33 sys=0.26, real=0.38 secs]
+	 * 
+	 * @return the regex
+	 */
+	public static Regex eofTotalGCDuration() {
+		return RegexBuilder.create()
+			.pattern("[^\\d\\.]")
+			.number("#duration")
+			.pattern("\\s*")
+			.constant("secs]")
+			.build();
+	}
+	
+	/**
+	 * Every gc line starts the the timestamp of the garbage collection (which is optional, may not
+	 * be present if the flag -XX:+PrintGCDateStamps is not given), followed by time since jvm startup.
+	 * 
+	 * Example:  The regex will match if the line starts with 2012-11-14T20:43:06.188+0100: 145.144 
+	 * 			 Here 2012-11-14T20:43:06.188 is the timestamp of the gc start and 145.144 is the
+	 * 			 time since jvm startup. 
+	 * 
+	 * @return the regex
+	 */
+	public static Regex timestampOfGcStart() {
+		return RegexBuilder.create()
+		 		.optional("#timestamp")
+				.regex("#date", Patterns.date()) 
+				.constant("T")
+				.regex("#time", Patterns.time())
+				.constant("+0100: ")
+			.end()
+			.number("#timeSinceStartup")
+			.build();
+	}
+	
+	/**
 	 * Example: 3166449K(6291456K)
 	 * @return
 	 */

@@ -5,8 +5,13 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+
 import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;
+import de.morten.model.gc.GCTimeStats;
 import de.morten.model.message.Message;
 import de.morten.model.message.MessageConsumer;
 
@@ -120,6 +125,23 @@ public abstract class AbstractParser implements MessageConsumer {
 
 	private boolean alreadyStarted() {
 		return this.buffer.length() > 0;
+	}
+	
+	protected GCTimeStats readTimeStats(final Match match)
+	{
+		DateTime startup = null;
+		if(match.getByName("timestamp") != null)
+		{
+			final String date = match.getByName("timestamp->date");
+			final String time = match.getByName("timestamp->time");
+			DateTimeFormatter parser = ISODateTimeFormat.dateTime();
+			startup = parser.parseDateTime(date+"T"+time + "+0100");
+		}
+		
+		final double ellapsedTimeInSecs = Double.valueOf(match.getByName("timeSinceStartup"));
+		final double durationInSecs = Double.valueOf(match.getByName("duration"));
+		final GCTimeStats timeStats = new GCTimeStats(startup, ellapsedTimeInSecs, durationInSecs);
+		return timeStats;
 	}
 
 

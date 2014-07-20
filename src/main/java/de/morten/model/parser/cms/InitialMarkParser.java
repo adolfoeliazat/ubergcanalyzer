@@ -5,10 +5,6 @@ import javax.annotation.RegEx;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
-
 import de.java.regexdsl.model.Match;
 import de.java.regexdsl.model.Regex;
 import de.java.regexdsl.model.RegexBuilder;
@@ -72,16 +68,10 @@ public class InitialMarkParser extends AbstractParser {
 	 */
 	private static Regex createInitialMarkPattern() {
 		return  RegexBuilder.create()
-		.optional("#timestamp")
-			.regex("#date", Patterns.date()) 
-			.constant("T")
-			.regex("#time", Patterns.time())
-			.constant("+0100: ")
-		.end()
-		.number("#timeSinceStartup").any()
+		.regex(Patterns.timestampOfGcStart()).any()
 		.regex("#tenured", Patterns.memStatOccupancyBeforeAndTotal()).any()
 		.regex("#heap", Patterns.memStatOccupancyBeforeAndTotal()).any()
-		.pattern("[^\\d\\.]").number("#duration").constant("secs]").any()
+		.regex(Patterns.eofTotalGCDuration()).any()
 		.build();
 	}
 
@@ -125,22 +115,6 @@ public class InitialMarkParser extends AbstractParser {
 		return heapState;
 	}
 
-	private GCTimeStats readTimeStats(final Match match)
-	{
-		DateTime startup = null;
-		if(match.getByName("timestamp") != null)
-		{
-			final String date = match.getByName("timestamp->date");
-			final String time = match.getByName("timestamp->time");
-			DateTimeFormatter parser = ISODateTimeFormat.dateTime();
-			startup = parser.parseDateTime(date+"T"+time + "+0100");
-		}
-		
-		final double ellapsedTimeInSecs = Double.valueOf(match.getByName("timeSinceStartup"));
-		final double durationInSecs = Double.valueOf(match.getByName("duration"));
-		final GCTimeStats timeStats = new GCTimeStats(startup, ellapsedTimeInSecs, durationInSecs);
-		return timeStats;
-	}
 
 	
 }
