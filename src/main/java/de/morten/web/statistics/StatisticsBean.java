@@ -66,7 +66,7 @@ public class StatisticsBean {
 		private final List<GCEvent> events;
 		private final List<GCEvent> allEvents;
 		private final List<Long> secs;
-		private final long totalSecs;
+		private final double totalSecs;
 		private final double totalElapsedTimeSinceMeasurement;
 		
 		
@@ -129,16 +129,16 @@ public class StatisticsBean {
 		 * 
 		 * @return the total secs of this gc event
 		 */
-		public long getTotalGCSecs() {
+		public double getTotalGCSecs() {
 			return this.totalSecs;
 			
 		}
 		
-		private long sumSecs(final List<GCEvent> vals)
+		private double sumSecs(final List<GCEvent> vals)
 		{
 			return vals.stream()
-				.map(v -> Math.round(v.getTimeStats().getDuration()))
-				.mapToLong(Long::longValue)
+				.map(v -> v.getTimeStats().getDuration())
+				.mapToDouble(Double::doubleValue)
 				.sum();
 		}
 		
