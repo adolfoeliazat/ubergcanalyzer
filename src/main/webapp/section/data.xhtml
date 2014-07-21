@@ -2,6 +2,7 @@
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
  <html xmlns="http://www.w3.org/1999/xhtml"
  xmlns:p="http://primefaces.org/ui"
+ xmlns:f="http://java.sun.com/jsf/core"
  xmlns:h="http://java.sun.com/jsf/html"
  xmlns:ui="http://java.sun.com/jsf/facelets">
 
@@ -10,7 +11,7 @@
 	 <ui:composition>
 	    <p:panel id="data" header="" closable="true" >
 	    	<p:tabView dynamic="true" id="dataView" cache="true">
-	    		<p:tab id="tab1" title="stats1">
+	    		<p:tab id="tab1" title="Numer of Occurrences">
 			  		<p:dataTable var="stat" value="#{statisticsBean.stats}">
 			  			<p:column headerText="Name">
 				            <h:outputText value="#{stat.name}" />
@@ -19,20 +20,20 @@
 				            <h:outputText value="#{stat.num}" />
 				        </p:column>
 				
-				        <p:column headerText="Total num %">
-				            <h:outputText value="#{stat.numPercent}" />
-				        </p:column>
-				
 				        <p:column headerText="Total GC [secs]">
-				            <h:outputText value="#{stat.totalGCSecs}" />
+				            <h:outputText value="#{stat.totalGCSecs}"><f:convertNumber pattern="#0.00" /> </h:outputText>
+				        </p:column>
+				        
+				        <p:column headerText="Total num %">
+				            <h:outputText value="#{stat.numPercent}"><f:convertNumber pattern="#0.00" /></h:outputText>
 				        </p:column>
 				
 				        <p:column headerText="Total GC % [secs]">
-				            <h:outputText value="#{stat.totalGCSecsPercent}" />
+				            <h:outputText value="#{stat.totalGCSecsPercent}"><f:convertNumber pattern="#0.00" /></h:outputText>
 				        </p:column>
 			   		 </p:dataTable>
 		   		 </p:tab>
-		   		  <p:tab id="tab2" title="stats2">
+		   		  <p:tab id="tab2" title="Extremum">
 			  		<p:dataTable var="stat" value="#{statisticsBean.stats}">
 			  			<p:column headerText="Name">
 				            <h:outputText value="#{stat.name}" />
@@ -46,18 +47,18 @@
 				        </p:column>
 				
 				        <p:column headerText="Avg">
-				            <h:outputText value="#{stat.avg}" />
+				            <h:outputText value="#{stat.avg}"><f:convertNumber pattern="#0.00" /></h:outputText>
 				        </p:column>
 				
 				        <p:column headerText="Median">
 				            <h:outputText value="#{stat.median}" />
 				        </p:column>
 				        <p:column headerText="Sigma">
-				            <h:outputText value="#{stat.standardDeviation}" />
+				            <h:outputText value="#{stat.standardDeviation}"><f:convertNumber pattern="#0.00" /></h:outputText>
 				        </p:column>
 			   		 </p:dataTable>
 		   		 </p:tab>
-		   		 <p:tab id="tab3" title="stats3">
+		   		 <p:tab id="tab3" title="Performance">
 			  		<p:dataTable var="stat" value="#{statisticsBean.stats}">
 			  			<p:column headerText="Name">
 				            <h:outputText value="#{stat.name}" />
@@ -67,7 +68,7 @@
 				        </p:column>
 				
 				        <p:column headerText="Throughput">
-				            <h:outputText value="#{stat.throughput}" />
+				            <h:outputText value="#{stat.throughput}"><f:convertNumber pattern="#0.00" /></h:outputText>
 				        </p:column>
 					 </p:dataTable>
 		   		 </p:tab>
