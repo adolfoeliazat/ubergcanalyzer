@@ -14,6 +14,7 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import de.morten.model.gc.GCEvent;
 import de.morten.model.message.Message;
 import de.morten.model.parser.ActiveGCParser;
 import de.morten.model.parser.GCEventObserverForJunitTests;
@@ -46,6 +47,9 @@ public class ConcurrentPhaseTest {
 			final String line = "2012-11-14T21:01:38.684+0100: 1257.639: [CMS-concurrent-mark: 1.142/1.148 secs] [Times: user=6.76 sys=0.15, real=1.14 secs]";	
 			concurrentMarkParser.consume(new Message(line));
 			assertThat(observer.events().size(), is(Integer.valueOf(1)));
+			
+			final GCEvent event = observer.events().get(0);
+			assertThat(String.valueOf(event.getTimeStats().getDuration()), is("1.14"));
 	}
 	
 	@Test
@@ -54,6 +58,9 @@ public class ConcurrentPhaseTest {
 		final String line = "2012-11-14T21:01:38.704+0100: 1257.660: [CMS-concurrent-preclean: 0.021/0.021 secs] [Times: user=0.02 sys=0.00, real=0.02 secs]";
 		precleanParser.consume(new Message(line));
 		assertThat(observer.events().size(), is(Integer.valueOf(1)));
+		
+		final GCEvent event = observer.events().get(0);
+		assertThat(String.valueOf(event.getTimeStats().getDuration()), is("0.02"));
 	}
 	
 	@Test
@@ -61,6 +68,9 @@ public class ConcurrentPhaseTest {
 		final String line = "2012-11-14T21:01:54.081+0100: 1273.037: [CMS-concurrent-sweep: 3.260/3.382 secs] [Times: user=5.65 sys=0.10, real=3.38 secs]";
 		concurrentSweepParser.consume(new Message(line));
 		assertThat(observer.events().size(), is(Integer.valueOf(1)));
+		
+		final GCEvent event = observer.events().get(0);
+		assertThat(String.valueOf(event.getTimeStats().getDuration()), is("3.38"));
 	}
 	
 	@Test
@@ -68,5 +78,8 @@ public class ConcurrentPhaseTest {
 		final String line = "2012-11-14T21:01:54.115+0100: 1273.071: [CMS-concurrent-reset: 0.034/0.034 secs] [Times: user=0.02 sys=0.03, real=0.04 secs]";
 		concurrentResetParser.consume(new Message(line));
 		assertThat(observer.events().size(), is(Integer.valueOf(1)));
+		
+		final GCEvent event = observer.events().get(0);
+		assertThat(String.valueOf(event.getTimeStats().getDuration()), is("0.04"));
 	}
 }

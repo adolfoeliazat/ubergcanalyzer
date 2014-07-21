@@ -115,7 +115,6 @@ public abstract class AbstractParser implements MessageConsumer {
 		final Regex pattern = pattern();
 		double d = System.currentTimeMillis();
 		final Match match = pattern.match(message.text());
-		System.out.println("duration: " + (System.currentTimeMillis() - d));
 		if(match.empty()) return false;
 		
 		publishEventFor(match, message);

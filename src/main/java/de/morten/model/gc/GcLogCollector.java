@@ -42,7 +42,7 @@ public class GcLogCollector implements Serializable {
 	 * 
 	 * @return all parsing results from all log files.
 	 */
-	public List<AnalyseResult> getAllAnalyseResults() {
+	public List<AnalyseResult> getAllParsedLogFiles() {
 		
 		return results.entrySet().stream()
 			.map(entry -> new AnalyseResult(entry.getKey().toString(), entry.getValue()))

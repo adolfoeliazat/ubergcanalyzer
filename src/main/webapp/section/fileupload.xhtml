@@ -26,7 +26,7 @@
 
 						<h:panelGroup id="analyseResultGroup">
 							<div id="analyseResult">
-								<ui:repeat var="result" value="#{gcLogCollector.allAnalyseResults}">
+								<ui:repeat var="result" value="#{gcLogCollector.allParsedLogFiles}">
 									<div>
 										<p:commandButton action="#{checkedResult.set(result)}" value="#{result.name}" update=":main:chart :main:data"/>
 									</div>

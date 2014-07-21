@@ -4,6 +4,7 @@ class MessageConsumerNode {
 
 	private MessageConsumer data;
 	private MessageConsumerNode next;
+	private MessageConsumerNode prev;
 	
 	public MessageConsumerNode(MessageConsumer data)
 	{
@@ -13,9 +14,10 @@ class MessageConsumerNode {
 	
 	public void add(MessageConsumer data)
 	{
-		final MessageConsumerNode task = new MessageConsumerNode(data);
+		final MessageConsumerNode currentNode = new MessageConsumerNode(data);
 		final MessageConsumerNode lastNode = getLastNode();
-		lastNode.next = task;
+		lastNode.next = currentNode;
+		currentNode.prev = lastNode;
 	}
 	
 	private MessageConsumerNode getLastNode() {
@@ -33,6 +35,10 @@ class MessageConsumerNode {
 		
 		final MessageConsumerNode lastNode = getLastNode();
 		lastNode.next = this;
+		
+		this.prev.next = this.next;
+		this.prev = lastNode;
+		this.next = null;
 	}
 	
 	public void resetTail()
