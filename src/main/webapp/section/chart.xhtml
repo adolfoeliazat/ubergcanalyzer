@@ -11,6 +11,14 @@
 		 <p:panel  id="chart" header="chart" >
 		    <p:tabView dynamic="true" id="chartView" cache="true">
 				<p:tab id="tab1" title="duration">
+					 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+					 	<p:selectBooleanCheckbox value="#{durationChart.showOnlyStopTheWorld}">
+					 		 
+					 	  	<p:ajax update=":main:chartView:duration1" />
+					 	  	
+					 	  </p:selectBooleanCheckbox>
+					 	<h:outputText value="Stop The World only " />
+					 </h:panelGrid>
 					 <p:barChart id="duration1" value="#{durationChart.model}" legendPosition="e" animate="true" showMarkers="false" zoom="true"  
 				     		title="Linear Chart" minY="0" maxY="2000" minX="0" style="" widgetVar="chart1" extender="chartExtender"/>  
 				</p:tab>

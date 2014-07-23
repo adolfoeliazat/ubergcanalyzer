@@ -35,7 +35,7 @@ import de.morten.model.message.CorrelationId;
 @Named
 public class GcLogCollector implements Serializable {
 	private static final long serialVersionUID = 1L;
-	final Map<CorrelationId, Map<String, List<GCEvent>>> results = new ConcurrentHashMap<>();
+	final Map<CorrelationId, Map<String, List<GCEvent>>> resultsPerLogFile = new ConcurrentHashMap<>();
 	
 	/**
 	 * Get all parsing results. The result of one log file is represented by a {@link AnalyseResult}.
@@ -44,7 +44,7 @@ public class GcLogCollector implements Serializable {
 	 */
 	public List<AnalyseResult> getAllParsedLogFiles() {
 		
-		return results.entrySet().stream()
+		return resultsPerLogFile.entrySet().stream()
 			.map(entry -> new AnalyseResult(entry.getKey().toString(), entry.getValue()))
 			.collect(Collectors.toList());
 	}
@@ -62,9 +62,9 @@ public class GcLogCollector implements Serializable {
 	public void collectEvent(@Observes final GCEvent event)
 	{
 		Objects.requireNonNull(event);
-		results.putIfAbsent(event.getCorrelationId(), new ConcurrentHashMap<>());
+		resultsPerLogFile.putIfAbsent(event.getCorrelationId(), new ConcurrentHashMap<>());
 		
-		final Map<String, List<GCEvent>> eventNameToEvents = results.get(event.getCorrelationId());
+		final Map<String, List<GCEvent>> eventNameToEvents = resultsPerLogFile.get(event.getCorrelationId());
 		eventNameToEvents.putIfAbsent(event.getName(), Collections.synchronizedList(new ArrayList<GCEvent>()));
 		eventNameToEvents.get(event.getName()).add(event);
 	}
