@@ -21,6 +21,7 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import de.morten.model.gc.GCEvent;
 import de.morten.model.message.Message;
 import de.morten.model.parser.ActiveGCParser;
 import de.morten.model.parser.GCEventObserverForJunitTests;
@@ -44,6 +45,25 @@ public class ParNewParserTest {
 		this.observer.clear();
 	}
 	
+	@Test public void shouldParseMinorGCEvent() {
+												 
+		final List<String> lines = Arrays.asList(
+				"2014-07-15T05:55:37.596+0200: 23.406: [GC 23.406: [ParNew",
+		         "Desired survivor size 357892096 bytes, new threshold 15 (max 15)",
+		         "- age   1:   64957776 bytes,   64957776 total",
+		         ": 2796288K->63812K(3495296K), 0.0633240 secs] 2796288K->63812K(11883904K), 0.0634140 secs] [Times: user=0.29 sys=0.05, real=0.06 secs]");
+		for(final String line : lines)
+		{
+			parser.consume(new Message(line));
+		}
+		
+		assertThat(observer.events().size(), is(Integer.valueOf(1)));
+		final GCEvent event = observer.events().iterator().next();
+		assertThat(event.getTimeStats().getElappsedTime(), is(23.406));
+		assertThat(event.getTimeStats().getDuration(), is(0.06));
+		assertThat(event.isStopTheWorld(), is(false));
+	}
+	
 	@Test
 	public void testParser() {
 		assertThat(parser, not(nullValue()));
@@ -63,6 +83,11 @@ public class ParNewParserTest {
 		}
 		
 		assertThat(observer.events().size(), is(Integer.valueOf(1)));
+		
+		final GCEvent event = observer.events().iterator().next();
+		assertThat(event.getTimeStats().getElappsedTime(), is(157.554));
+		assertThat(event.getTimeStats().getDuration(), is(0.38));
+		assertThat(event.isStopTheWorld(), is(false));
 	}
 	
 	@Test

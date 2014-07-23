@@ -59,7 +59,7 @@ public class Patterns {
 				.regex("#date", Patterns.date()) 
 				.constant("T")
 				.regex("#time", Patterns.time())
-				.constant("+0100: ")
+				.constant("+").number().constant(": ")
 			.end()
 			.number("#timeSinceStartup")
 			.build();

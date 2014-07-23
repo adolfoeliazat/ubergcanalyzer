@@ -137,6 +137,7 @@ public abstract class AbstractParser implements MessageConsumer {
 		}
 		
 		final double ellapsedTimeInSecs = Double.valueOf(match.getByName("timeSinceStartup"));
+		
 		final double durationInSecs = Double.valueOf(match.getByName("duration"));
 		final GCTimeStats timeStats = new GCTimeStats(startup, ellapsedTimeInSecs, durationInSecs);
 		return timeStats;
