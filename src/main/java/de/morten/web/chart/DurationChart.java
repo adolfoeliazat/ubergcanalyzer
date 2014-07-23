@@ -2,6 +2,7 @@ package de.morten.web.chart;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
 
@@ -36,7 +37,10 @@ public class DurationChart implements  Chart {
     		linearModel.addSeries(empty);
     	}
     	
-    	events.entrySet().forEach(entry -> {
+    	events.entrySet()
+    		.stream()
+    		.filter(entry -> filterStopTheWorldEntries(entry))
+    		.forEach(entry -> {
     			final LineChartSeries series = new LineChartSeries(entry.getKey());
 
         		final TreeMap<Integer, Integer> stats = new TreeMap<Integer, Integer>();
@@ -56,6 +60,14 @@ public class DurationChart implements  Chart {
     	});
     	
     	return linearModel;
+	}
+
+
+	private boolean filterStopTheWorldEntries(Entry<String, List<GCEvent>> entry) {
+		return !showOnlyStopTheWorld 	 //if not active, don't filter
+		|| entry.getValue().isEmpty()    
+		|| entry.getValue().iterator().next().isStopTheWorld(); //sufficient to only check the first entry because each list
+																//contains the same type of gc events
 	}
 
 	public void setShowOnlyStopTheWorld(final boolean showOnlyStopTheWorld) {
