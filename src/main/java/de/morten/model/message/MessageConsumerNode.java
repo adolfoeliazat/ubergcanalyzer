@@ -34,9 +34,14 @@ class MessageConsumerNode {
 			return;
 		
 		final MessageConsumerNode lastNode = getLastNode();
+		if(lastNode == this) return;
+		
 		lastNode.next = this;
 		
+		
+		this.next.prev = this.prev;
 		this.prev.next = this.next;
+		
 		this.prev = lastNode;
 		this.next = null;
 	}
@@ -63,5 +68,11 @@ class MessageConsumerNode {
 			t = t.next;
 		}
 		return consumed;
+	}
+	
+	
+	@Override public String toString() {
+		final String name = this.data.getClass().getSimpleName();
+		return this.next != null? name + "->" + this.next.toString() : name;
 	}
 }

@@ -89,7 +89,6 @@ public abstract class AbstractParser implements MessageConsumer {
 	}
 
 	private boolean consumeMultiLine(final Message message) {
-		
 		final boolean startDetected = startParsing(message);
 		if(startDetected && alreadyStarted())
 			this.buffer = new String();

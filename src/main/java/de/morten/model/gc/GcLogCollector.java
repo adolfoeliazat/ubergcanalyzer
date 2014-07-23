@@ -49,6 +49,10 @@ public class GcLogCollector implements Serializable {
 			.collect(Collectors.toList());
 	}
 	
+	public AnalyseResult getParsedLogFile(final CorrelationId correlationId) {
+		return new AnalyseResult(correlationId.toString(), resultsPerLogFile.get(correlationId));
+	}
+	
 	/**
 	 * Saves the given event into this result. This method is usually called by the container
 	 * when an {@link GCEvent} was triggered. 

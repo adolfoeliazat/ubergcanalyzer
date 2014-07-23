@@ -86,4 +86,21 @@ public class Message {
 	public CorrelationId correlationId() {
 		return correlationId;
 	}
+	
+	@Override public int hashCode() {
+		return Objects.hash(this.correlationId, this.text);
+	}
+	
+	@Override public boolean equals(final Object other) {
+		if(this == other) return true;
+		if(!(other instanceof Message)) return false;
+		final Message that = (Message)other;
+		
+		return Objects.equals(this.correlationId, that.correlationId) &&
+				Objects.equals(this.text, that.text);
+	}
+	
+	@Override public String toString() {
+		return "Message[" + this.text + ", " + this.correlationId + "]";
+	}
 }

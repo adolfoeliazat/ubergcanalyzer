@@ -26,6 +26,6 @@ public class MessageConsumerChain {
 		@Override
 		public void reset() {
 		}
-
 	}
+	
 }

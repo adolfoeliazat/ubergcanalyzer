@@ -1,0 +1,53 @@
+
+2012-11-14T21:01:37.171+0100: 1256.127: [GC [1 CMS-initial-mark: 3166449K(6291456K)] 3644014K(8912896K), 0.3643600 secs] [Times: user=0.36 sys=0.01, real=0.37 secs] 
+2012-11-14T21:01:37.535+0100: 1256.491: [CMS-concurrent-mark-start]
+2012-11-14T21:01:38.684+0100: 1257.639: [CMS-concurrent-mark: 1.142/1.148 secs] [Times: user=6.76 sys=0.15, real=1.14 secs] 
+2012-11-14T21:01:38.684+0100: 1257.639: [CMS-concurrent-preclean-start]
+2012-11-14T21:01:38.704+0100: 1257.660: [CMS-concurrent-preclean: 0.021/0.021 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+2012-11-14T21:01:38.705+0100: 1257.660: [CMS-concurrent-abortable-preclean-start]
+ CMS: abort preclean due to time 2012-11-14T21:01:49.373+0100: 1268.329: [CMS-concurrent-abortable-preclean: 10.658/10.668 secs] [Times: user=17.07 sys=0.25, real=10.67 secs] 
+2012-11-14T21:01:49.373+0100: 1268.329: [GC[YG occupancy: 2470878 K (2621440 K)]1268.329: [Rescan (parallel) , 1.3235890 secs]1269.653: [weak refs processing, 0.0017690 secs] [1 CMS-remark: 3166449K(6291456K)] 5637327K(8912896K), 1.3255410 secs] [Times: user=21.30 sys=0.04, real=1.33 secs] 
+2012-11-14T21:01:50.699+0100: 1269.655: [CMS-concurrent-sweep-start]
+2012-11-14T21:01:51.036+0100: 1269.991: [GC 1269.992: [ParNew
+Desired survivor size 268435456 bytes, new threshold 7 (max 15)
+- age   1:   41235272 bytes,   41235272 total
+- age   2:   79485256 bytes,  120720528 total
+- age   3:   21256944 bytes,  141977472 total
+- age   4:   43198128 bytes,  185175600 total
+- age   5:   30343112 bytes,  215518712 total
+- age   6:   47947200 bytes,  263465912 total
+- age   7:   25433592 bytes,  288899504 total
+: 2574714K->452438K(2621440K), 0.1182230 secs] 5731277K->3655648K(8912896K), 0.1183590 secs] [Times: user=1.64 sys=0.04, real=0.11 secs] 
+2012-11-14T21:01:54.081+0100: 1273.037: [CMS-concurrent-sweep: 3.260/3.382 secs] [Times: user=5.65 sys=0.10, real=3.38 secs] 
+2012-11-14T21:01:54.082+0100: 1273.038: [CMS-concurrent-reset-start]
+2012-11-14T21:01:54.115+0100: 1273.071: [CMS-concurrent-reset: 0.034/0.034 secs] [Times: user=0.02 sys=0.03, real=0.04 secs] 
+2012-11-14T21:17:11.850+0100: 2190.806: [GC [1 CMS-initial-mark: 4783591K(6291456K)] 5238760K(8912896K), 0.3533420 secs] [Times: user=0.36 sys=0.00, real=0.35 secs] 
+2012-11-14T21:17:12.204+0100: 2191.160: [CMS-concurrent-mark-start]
+2012-11-14T21:17:13.794+0100: 2192.750: [CMS-concurrent-mark: 1.589/1.591 secs] [Times: user=8.69 sys=0.11, real=1.59 secs] 
+2012-11-14T21:17:13.794+0100: 2192.750: [CMS-concurrent-preclean-start]
+2012-11-14T21:17:13.815+0100: 2192.771: [CMS-concurrent-preclean: 0.020/0.020 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+2012-11-14T21:17:13.815+0100: 2192.771: [CMS-concurrent-abortable-preclean-start]
+2012-11-14T21:17:23.235+0100: 2202.191: [GC 2202.191: [ParNew
+Desired survivor size 268435456 bytes, new threshold 6 (max 15)
+- age   1:   51589368 bytes,   51589368 total
+- age   2:   61923016 bytes,  113512384 total
+- age   3:   68140080 bytes,  181652464 total
+- age   4:   29595448 bytes,  211247912 total
+- age   5:   50714760 bytes,  261962672 total
+- age   6:   40350352 bytes,  302313024 total
+: 2550140K->390068K(2621440K), 0.2618320 secs] 7333731K->5227327K(8912896K), 0.2619620 secs] [Times: user=4.19 sys=0.03, real=0.26 secs] 
+ CMS: abort preclean due to time 2012-11-14T21:17:26.967+0100: 2205.923: [CMS-concurrent-abortable-preclean: 12.765/13.152 secs] [Times: user=22.91 sys=0.37, real=13.15 secs] 
+2012-11-14T21:17:26.967+0100: 2205.923: [GC[YG occupancy: 767173 K (2621440 K)]2205.923: [Rescan (parallel) , 0.1833150 secs]2206.106: [weak refs processing, 0.0009770 secs] [1 CMS-remark: 4837258K(6291456K)] 5604431K(8912896K), 0.1844700 secs] [Times: user=3.01 sys=0.01, real=0.18 secs] 
+2012-11-14T21:17:27.152+0100: 2206.108: [CMS-concurrent-sweep-start]
+2012-11-14T21:17:32.362+0100: 2211.318: [GC 2211.318: [ParNew
+Desired survivor size 268435456 bytes, new threshold 6 (max 15)
+- age   1:   50498200 bytes,   50498200 total
+- age   2:   44650352 bytes,   95148552 total
+- age   3:   60784008 bytes,  155932560 total
+- age   4:   68136520 bytes,  224069080 total
+- age   5:   29130528 bytes,  253199608 total
+- age   6:   50713784 bytes,  303913392 total
+: 2487220K->411653K(2621440K), 0.1947660 secs] 6179629K->4144094K(8912896K), 0.1949020 secs] [Times: user=3.07 sys=0.02, real=0.20 secs] 
+2012-11-14T21:17:32.889+0100: 2211.845: [CMS-concurrent-sweep: 5.412/5.737 secs] [Times: user=13.76 sys=0.35, real=5.74 secs] 
+2012-11-14T21:17:32.889+0100: 2211.845: [CMS-concurrent-reset-start]
+2012-11-14T21:17:32.905+0100: 2211.861: [CMS-concurrent-reset: 0.016/0.016 secs] [Times: user=0.02 sys=0.00, real=0.01 secs] 
