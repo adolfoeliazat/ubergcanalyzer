@@ -2,13 +2,14 @@
 package de.morten.model.gc;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import org.apache.http.annotation.ThreadSafe;
-import org.joda.time.DateTime;
 
 
 /**
@@ -19,6 +20,7 @@ public class AnalyseResult implements Serializable {
 	private static final long serialVersionUID = -2983890629567244775L;
 	private final String name;
 	private final Map<String, List<GCEvent>> events;
+	private final LocalDateTime date;
 	
 	/**
 	 * Create a analyse result of one log file with all found gc events. 
@@ -27,13 +29,13 @@ public class AnalyseResult implements Serializable {
 	 * 				     in the front end.
 	 * @param events all events of this result
 	 */
-	public AnalyseResult(final String nameSuffix, final Map<String, List<GCEvent>> events) {
-		final DateTime current  = new DateTime();
-		Objects.requireNonNull(nameSuffix);
+	public AnalyseResult(final String name, final Map<String, List<GCEvent>> events) {
+		Objects.requireNonNull(name);
 		Objects.requireNonNull(events);
 		
+		this.date = LocalDateTime.now();
 		this.events = Collections.unmodifiableMap(events);
-		this.name = current.toString() + "-" + nameSuffix;
+		this.name = name;
 	}
 	
 	/**
@@ -43,6 +45,14 @@ public class AnalyseResult implements Serializable {
 	 */
 	public String getName() {
 		return this.name;
+	}
+	
+	/**
+	 * The time this result was created
+	 * @return the date time 
+	 */
+	public String getDateTime() {
+		return this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 	}
 	
 	/**

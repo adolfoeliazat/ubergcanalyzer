@@ -27,9 +27,25 @@
 						<h:panelGroup id="analyseResultGroup">
 							<div id="analyseResult">
 								<ui:repeat var="result" value="#{gcLogCollector.allParsedLogFiles}">
-									<div>
+											<p:commandLink  update=":main:chart :main:data" action="#{checkedResult.set(result)}" style="margin:top:5px">
+										<h:panelGrid row="1" columns="2">
+												<img style="width:30px" src="http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Document-Blank-icon.png" />
+												
+												<h:panelGrid row="2" columns="1" >
+													<h:outputText value="#{result.name}" />
+													<h:outputText value="#{result.dateTime}" />
+												</h:panelGrid>
+										</h:panelGrid>
+											</p:commandLink>
+										<!-- 
+										<img style="width:30px" src="http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Document-Blank-icon.png" />
+										<span>
+											<span>GCfile.log</span>
+											<span>2014-01-01 20:38</span>
+										</span>
+										
 										<p:commandButton action="#{checkedResult.set(result)}" value="#{result.name}" update=":main:chart :main:data"/>
-									</div>
+										-->
 								</ui:repeat>
 							</div>
 						</h:panelGroup>

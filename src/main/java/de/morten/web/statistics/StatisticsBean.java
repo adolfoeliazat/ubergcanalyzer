@@ -3,6 +3,7 @@ package de.morten.web.statistics;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,14 @@ public class StatisticsBean {
 		final AnalyseResult result = checkedResult.get();
 		
 		final List<GCEvent> allEvents = flatten(result.getEvents().values());
+		
+		/*
+		final LinkedList<Statistics> stats = new LinkedList<>(result.getEvents().entrySet().stream()
+				.map(entry -> new Statistics(entry.getKey(), entry.getValue(), allEvents))
+				.collect(Collectors.toList()));
+		
+		stats.addFirst(new Statistics("All", allEvents, allEvents));
+		*/
 		
 		final List<Statistics> stats = result.getEvents().entrySet().stream()
 				.map(entry -> new Statistics(entry.getKey(), entry.getValue(), allEvents))
