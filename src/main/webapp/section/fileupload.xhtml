@@ -7,15 +7,34 @@
  xmlns:h="http://java.sun.com/jsf/html">
 	<h:head>
 	    <style type="text/css">
-	  
+	  	
 
 	        
 	    </style>
+	
+	
+
 	
 	</h:head>
  <h:body>
  	<ui:composition>
  			<p:panel id="fileupload" header="File Selection" >
+ 				 		<script type="text/javascript">
+							function setActive(com) {
+								$( ".toggleButton" ).removeClass("ui-state-active");
+								$(com).addClass("ui-state-active");
+							}
+
+							function hover(com) {
+								$(com).addClass("ui-state-hover").css("border", "0px");
+							}
+
+							function nothover(com) {
+								//$(com).css("border", "");
+								$(com).removeClass("ui-state-hover");
+							}
+						</script>
+		
 					<p:fileUpload fileUploadListener="#{fileUploadController.upload}"
 						allowTypes="/(\.|\/)(.*)$/" 
 						description="Select File"
@@ -25,10 +44,15 @@
 						<p:growl id="messages" showDetail="true"/> 
 
 						<h:panelGroup id="analyseResultGroup">
-							<div id="analyseResult">
+							<div id="analyseResult" style="margin-top:4px; ">
+							
+							
 								<ui:repeat var="result" value="#{gcLogCollector.allParsedLogFiles}">
-											<p:commandLink  update=":main:chart :main:data" action="#{checkedResult.set(result)}" style="margin:top:5px">
-										<h:panelGrid row="1" columns="2">
+										<p:commandLink  update=":main:chart :main:data" action="#{checkedResult.set(result)}" >
+										
+										
+										<h:panelGrid
+											 row="1" columns="2" onclick="setActive(this)" styleClass="toggleButton" style="font-weight:bold;border-radius: 3px;" onmouseover="hover(this)" onmouseout="nothover(this)">
 												<img style="width:30px" src="http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Document-Blank-icon.png" />
 												
 												<h:panelGrid row="2" columns="1" >
