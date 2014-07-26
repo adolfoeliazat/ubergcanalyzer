@@ -17,9 +17,14 @@
 
 .ui-layout-pane-center .ui-layout-unit-content {
 	
-	background-image:url("#{resource['images:bg.jpg']}");
+	background-image:url("#{resource['images:bg.png']}");
 }
 
+
+#header-img {
+	height:70px;
+	background-image:url("#{resource['images:header.png']}");
+}
 
 /*
 .ui-widget-header {

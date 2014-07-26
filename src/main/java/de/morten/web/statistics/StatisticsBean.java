@@ -38,13 +38,13 @@ public class StatisticsBean {
 		
 		final List<GCEvent> allEvents = flatten(result.getEvents().values());
 		
-		/*
-		final LinkedList<Statistics> stats = new LinkedList<>(result.getEvents().entrySet().stream()
-				.map(entry -> new Statistics(entry.getKey(), entry.getValue(), allEvents))
-				.collect(Collectors.toList()));
 		
-		stats.addFirst(new Statistics("All", allEvents, allEvents));
-		*/
+//		final LinkedList<Statistics> stats = new LinkedList<>(result.getEvents().entrySet().stream()
+//				.map(entry -> new Statistics(entry.getKey(), entry.getValue(), allEvents))
+//				.collect(Collectors.toList()));
+//		
+//		stats.addFirst(new Statistics("All", allEvents, allEvents));
+		
 		
 		final List<Statistics> stats = result.getEvents().entrySet().stream()
 				.map(entry -> new Statistics(entry.getKey(), entry.getValue(), allEvents))
