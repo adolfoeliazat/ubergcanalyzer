@@ -81,7 +81,6 @@
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
 
-
  <security-role>
  	<role-name>ubergc</role-name>
  </security-role>
@@ -98,7 +97,6 @@
  
  <login-config>
  	<auth-method>FORM</auth-method>
- 	
  	<form-login-config>
  		<form-login-page>/WEB-INF/login.jsf</form-login-page>
  		<form-error-page>/WEB-INF/loginFailed.jsf</form-error-page>
