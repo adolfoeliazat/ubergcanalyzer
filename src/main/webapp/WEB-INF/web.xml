@@ -95,6 +95,7 @@
  	</auth-constraint>
  </security-constraint>
  
+ 
  <login-config>
  	<auth-method>FORM</auth-method>
  	<form-login-config>
@@ -106,7 +107,7 @@
 
   <!-- Welcome files -->
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>dashboard.jsf</welcome-file>
   </welcome-file-list>
 
 </web-app>

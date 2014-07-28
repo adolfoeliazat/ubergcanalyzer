@@ -28,8 +28,9 @@
 		 	
 			 
 		    <p:confirmDialog  appendToBody="true" message="Are you sure you want to logout?" header="Confirmation" severity="alert" widgetVar="confirmation">
-		        <p:commandButton value="Yes" update="messages" oncomplete="confirmation.hide()"
-		                    actionListener="#{buttonBean.destroyWorld}" />
+		        <p:commandButton value="Yes"  oncomplete="confirmation.hide()"
+		                    action="#{users.logout}"   />
+		                    
 		        <p:commandButton value="Not" onclick="confirmation.hide()" type="button" />
 		    </p:confirmDialog>
 		    
